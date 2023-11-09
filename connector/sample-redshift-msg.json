@@ -1,0 +1,18 @@
+{
+    "row": 736044,
+    "trans_id": "T00786455",
+    "account_id": "A00002680",
+    "type": "Debit",
+    "operation": "Cash Withdrawal",
+    "amount": 1500.0,
+    "balance": 21091.4,
+    "k_symbol": null,
+    "bank": null,
+    "account": null,
+    "year": 2018,
+    "month": 1,
+    "day": 3,
+    "fulldate": "1/3/2018",
+    "fulltime": "11:09:47",
+    "fulldatewithtime": "2018-01-03T11:09:47"
+}

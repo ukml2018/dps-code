@@ -1,0 +1,16 @@
+{{- if .Values.configEnvs}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env-configmap
+  labels:
+    app: {{ .Chart.Name }}
+    chart: {{ .Chart.Name }}
+    component: {{ .Chart.Name }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+  {{- with .Values.configEnvs }}
+    {{- toYaml . | trimSuffix "\n" | nindent 2 }}
+  {{- end }}
+{{- end }}

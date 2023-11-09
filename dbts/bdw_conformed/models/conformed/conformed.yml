@@ -1,0 +1,2570 @@
+
+version: 2
+
+models:
+  - name: LO
+    description: '{{ doc("tbl_LO") }}'
+    columns:
+      - name: LO_ID
+        description: '{{ doc("tbl_LO_LO_ID") }}'
+        tests:
+          - unique
+          - not_null
+      - name: PPN_DT
+        description: '{{ doc("tbl_LO_PPN_DT") }}'
+      - name: PPN_TM
+        description: '{{ doc("tbl_LO_PPN_TM") }}'
+      - name: SRC_STM_ID
+        description: '{{ doc("tbl_LO_SRC_STM_ID") }}'
+      - name: UNQ_ID_IN_SRC_STM
+        description: '{{ doc("tbl_LO_UNQ_ID_IN_SRC_STM") }}'
+      - name: LO_TP_ID
+        description: '{{ doc("tbl_LO_LO_TP_ID") }}'
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['city', 'state', 'region', 'division']
+      - name: PRN_LO_ID
+        description: '{{ doc("tbl_LO_PRN_LO_ID") }}'
+      - name: LO_NM
+        description: '{{ doc("tbl_LO_LO_NM") }}'
+        tests:
+          - not_null
+      - name: EFF_DT
+        description: '{{ doc("tbl_LO_EFF_DT") }}'
+      - name: END_DT
+        description: '{{ doc("tbl_LO_END_DT") }}'
+      - name: DSC
+        description: '{{ doc("tbl_LO_DSC") }}'
+  - name: SA_IP
+    description: '{{ doc("tbl_SA_IP") }}'
+    columns:
+      - name: IP_ID
+        description: '{{ doc("tbl_SA_IP_IP_ID") }}'
+        tests:
+          - unique
+          - not_null
+      - name: SRC_SYS_CD
+        description: '{{ doc("tbl_SA_IP_SRC_SYS_CD") }}'
+        tests:
+          - unique
+          - not_null
+          - validate_regex:
+              regex: '[C]{1}[0-9]{8}'
+      - name: SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_IP_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: EFFV_TS
+        description: '{{ doc("tbl_SA_IP_EFFV_TS") }}'
+      - name: END_TS
+        description: '{{ doc("tbl_SA_IP_END_TS") }}'
+      - name: TNNT_CD_ID
+        description: '{{ doc("tbl_SA_IP_TNNT_CD_ID") }}'
+      - name: BTCH_ID
+        description: '{{ doc("tbl_SA_IP_BTCH_ID") }}'
+      - name: IP_TY_ID
+        description: '{{ doc("tbl_SA_IP_IP_TY_ID") }}'
+      - name: END_DT
+        description: '{{ doc("tbl_SA_IP_END_DT") }}'
+      - name: EFFV_DT
+        description: '{{ doc("tbl_SA_IP_EFFV_DT") }}'
+      - name: DESC
+        description: '{{ doc("tbl_SA_IP_DESC") }}'
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Review Required', 'Review Not Required']
+      - name: IP_LC_STS_TY_ID
+        description: '{{ doc("tbl_SA_IP_IP_LC_STS_TY_ID") }}'
+      - name: IP_LC_STS_DT
+        description: '{{ doc("tbl_SA_IP_IP_LC_STS_DT") }}'
+      - name: PRMY_RL_TY_ID
+        description: '{{ doc("tbl_SA_IP_PRMY_RL_TY_ID") }}'
+      - name: FNC_LGL_STS_ID
+        description: '{{ doc("tbl_SA_IP_FNC_LGL_STS_ID") }}'
+      - name: FNC_LGL_STS_EFFV_DT
+        description: '{{ doc("tbl_SA_IP_FNC_LGL_STS_EFFV_DT") }}'
+      - name: IP_CRR_ID
+        description: '{{ doc("tbl_SA_IP_IP_CRR_ID") }}'
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Good', 'Bad'] 
+      - name: IP_CRR_DT
+        description: '{{ doc("tbl_SA_IP_IP_CRR_DT") }}'
+      - name: PDFT_CGY_ID
+        description: '{{ doc("tbl_SA_IP_PDFT_CGY_ID") }}'
+        tests:
+          - not_null
+      - name: PDFT_CGY_EFFV_DT
+        description: '{{ doc("tbl_SA_IP_PDFT_CGY_EFFV_DT") }}'
+      - name: IP_NM
+        description: '{{ doc("tbl_SA_IP_IP_NM") }}'
+      - name: IP_SKL_TY_ID
+        description: '{{ doc("tbl_SA_IP_IP_SKL_TY_ID") }}'
+      - name: FI_FLG
+        description: '{{ doc("tbl_SA_IP_FI_FLG") }}'
+      - name: FI_INVEST_FLG
+        description: '{{ doc("tbl_SA_IP_FI_INVEST_FLG") }}'
+      - name: ADVRTS_FLG
+        description: '{{ doc("tbl_SA_IP_ADVRTS_FLG") }}'
+      - name: SUS_MONTR_STS_ID
+        description: '{{ doc("tbl_SA_IP_SUS_MONTR_STS_ID") }}'
+      - name: SUS_MONTR_STS_DT
+        description: '{{ doc("tbl_SA_IP_SUS_MONTR_STS_DT") }}'
+      - name: PRVS_RFUS_FLG
+        description: '{{ doc("tbl_SA_IP_PRVS_RFUS_FLG") }}'
+      - name: IDV_LC_STS_TY_ID
+        description: '{{ doc("tbl_SA_IP_IDV_LC_STS_TY_ID") }}'
+      - name: RELG_ID
+        description: '{{ doc("tbl_SA_IP_RELG_ID") }}'
+      - name: GNDR_ID
+        description: '{{ doc("tbl_SA_IP_GNDR_ID") }}'
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Female', 'Male']
+      - name: DOB
+        description: '{{ doc("tbl_SA_IP_DOB") }}'
+        tests:
+          - not_null
+          - valid_date
+          - valid_date_range:
+              from: '1/1/1900'
+      - name: DTH_DT
+        description: '{{ doc("tbl_SA_IP_DTH_DT") }}'
+      - name: DTH_NOTIF_DT
+        description: '{{ doc("tbl_SA_IP_DTH_NOTIF_DT") }}'
+      - name: LANG_ID
+        description: '{{ doc("tbl_SA_IP_LANG_ID") }}'
+      - name: IDV_MRTL_STS_TY_ID
+        description: '{{ doc("tbl_SA_IP_IDV_MRTL_STS_TY_ID") }}'
+      - name: IDV_MRTL_STS_DT
+        description: '{{ doc("tbl_SA_IP_IDV_MRTL_STS_DT") }}'
+      - name: IDV_AGE_SEG_ID
+        description: '{{ doc("tbl_SA_IP_IDV_AGE_SEG_ID") }}'
+      - name: IDV_AGE_SEG_DT
+        description: '{{ doc("tbl_SA_IP_IDV_AGE_SEG_DT") }}'
+      - name: IDV_RACE_ID
+        description: '{{ doc("tbl_SA_IP_IDV_RACE_ID") }}'
+      - name: IDV_ETHNIC_TY_ID
+        description: '{{ doc("tbl_SA_IP_IDV_ETHNIC_TY_ID") }}'
+      - name: SECTG_ID
+        description: '{{ doc("tbl_SA_IP_SECTG_ID") }}'
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['executive wealth', 'starting out', 'successful suburbs', 'poorer pensioners', 'career climbers', 'struggling estates', 'comfortable seniors', 'student life', 'modest means', 'countryside communities', 'striving families', 'city sophisticates', 'not private household', 'steady neighbourhoods', 'mature money', 'lavish lifestyle', 'difficult circumstances', 'young hardship'] 
+      - name: SECTG_DT
+        description: '{{ doc("tbl_SA_IP_SECTG_DT") }}'
+      - name: IDV_INCM_SEG_ID
+        description: '{{ doc("tbl_SA_IP_IDV_INCM_SEG_ID") }}'
+      - name: IDV_IND_CL_ID
+        description: '{{ doc("tbl_SA_IP_IDV_IND_CL_ID") }}'
+      - name: IDV_IND_CL_DT
+        description: '{{ doc("tbl_SA_IP_IDV_IND_CL_DT") }}'
+      - name: HSNG_TNRE_TY_ID
+        description: '{{ doc("tbl_SA_IP_HSNG_TNRE_TY_ID") }}'
+      - name: HSNG_TNRE_DT
+        description: '{{ doc("tbl_SA_IP_HSNG_TNRE_DT") }}'
+      - name: CNTNTY_OF_ADDR_SEG_ID
+        description: '{{ doc("tbl_SA_IP_CNTNTY_OF_ADDR_SEG_ID") }}'
+      - name: CNTNTY_OF_ADDR_SEG_DT
+        description: '{{ doc("tbl_SA_IP_CNTNTY_OF_ADDR_SEG_DT") }}'
+      - name: CERT_TY_ID
+        description: '{{ doc("tbl_SA_IP_CERT_TY_ID") }}'
+      - name: CERT_DT
+        description: '{{ doc("tbl_SA_IP_CERT_DT") }}'
+      - name: IDV_OCPN_TY_ID
+        description: '{{ doc("tbl_SA_IP_IDV_OCPN_TY_ID") }}'
+      - name: IDV_OCPN_DT
+        description: '{{ doc("tbl_SA_IP_IDV_OCPN_DT") }}'
+      - name: IDV_EMPMNT_STS_TY_ID
+        description: '{{ doc("tbl_SA_IP_IDV_EMPMNT_STS_TY_ID") }}'
+      - name: IDV_EMPMNT_STS_DT
+        description: '{{ doc("tbl_SA_IP_IDV_EMPMNT_STS_DT") }}'
+      - name: IDV_EMPMNT_TM_COMIT_ID
+        description: '{{ doc("tbl_SA_IP_IDV_EMPMNT_TM_COMIT_ID") }}'
+      - name: IDV_EMPMNT_TM_COMIT_DT
+        description: '{{ doc("tbl_SA_IP_IDV_EMPMNT_TM_COMIT_DT") }}'
+      - name: FTHR_ID
+        description: '{{ doc("tbl_SA_IP_FTHR_ID") }}'
+      - name: SPS_ID
+        description: '{{ doc("tbl_SA_IP_SPS_ID") }}'
+      - name: MTHR_ID
+        description: '{{ doc("tbl_SA_IP_MTHR_ID") }}'
+      - name: CNTRY_OF_BRTH_ID
+        description: '{{ doc("tbl_SA_IP_CNTRY_OF_BRTH_ID") }}'
+      - name: CNTRY_OF_CTZNSHP_ID
+        description: '{{ doc("tbl_SA_IP_CNTRY_OF_CTZNSHP_ID") }}'
+      - name: HH_ID
+        description: '{{ doc("tbl_SA_IP_HH_ID") }}'
+      - name: HEAD_OF_HH_FLG
+        description: '{{ doc("tbl_SA_IP_HEAD_OF_HH_FLG") }}'
+      - name: CTZNSHP_DT
+        description: '{{ doc("tbl_SA_IP_CTZNSHP_DT") }}'
+      - name: CNTRY_OF_RES_ID
+        description: '{{ doc("tbl_SA_IP_CNTRY_OF_RES_ID") }}'
+      - name: CNTRY_OF_RES_DT
+        description: '{{ doc("tbl_SA_IP_CNTRY_OF_RES_DT") }}'
+      - name: NM_INTL
+        description: '{{ doc("tbl_SA_IP_NM_INTL") }}'
+      - name: SALU
+        description: '{{ doc("tbl_SA_IP_SALU") }}'
+      - name: NM_QUALIF
+        description: '{{ doc("tbl_SA_IP_NM_QUALIF") }}'
+      - name: GVN_NM
+        description: '{{ doc("tbl_SA_IP_GVN_NM") }}'
+        tests:
+          - not_null
+          - validate_regex:
+              regex: '[A-Z]{1}[a-z]+' 
+      - name: MID_NM
+        description: '{{ doc("tbl_SA_IP_MID_NM") }}'
+        tests:
+          - validate_regex:
+              regex: '[A-Z]{1}[a-z]+'
+      - name: SURNM
+        description: '{{ doc("tbl_SA_IP_SURNM") }}'
+        tests:
+          - not_null
+          - validate_regex:
+              regex: '[A-Z]{1}[a-z]+' 
+      - name: SURNM2
+        description: '{{ doc("tbl_SA_IP_SURNM2") }}'
+      - name: MAID_NM
+        description: '{{ doc("tbl_SA_IP_MAID_NM") }}'
+      - name: SFX
+        description: '{{ doc("tbl_SA_IP_SFX") }}'
+      - name: FL_NM
+        description: '{{ doc("tbl_SA_IP_FL_NM") }}'
+        tests:
+          - not_null
+      - name: PRMY_IDFN_TY_ID
+        description: '{{ doc("tbl_SA_IP_PRMY_IDFN_TY_ID") }}'
+      - name: PRMY_IDFN_NBR_TXT
+        description: '{{ doc("tbl_SA_IP_PRMY_IDFN_NBR_TXT") }}'
+        tests:
+          - unique
+          - not_null
+          - validate_regex:
+              regex: '[0-9]{3}-[0-9]{2}-[0-9]{4}'
+      - name: CRMNL_CNVCT_FLG
+        description: '{{ doc("tbl_SA_IP_CRMNL_CNVCT_FLG") }}'
+        tests:
+          - not_null
+          - accepted_values:
+              values: [0, 1]  
+      - name: ORG_LC_STS_TY_ID
+        description: '{{ doc("tbl_SA_IP_ORG_LC_STS_TY_ID") }}'
+      - name: ORG_LC_STS_DT
+        description: '{{ doc("tbl_SA_IP_ORG_LC_STS_DT") }}'
+      - name: CNTRL_BNK_IND_CL_ID
+        description: '{{ doc("tbl_SA_IP_CNTRL_BNK_IND_CL_ID") }}'
+      - name: CNTRL_BNK_IND_CL_DT
+        description: '{{ doc("tbl_SA_IP_CNTRL_BNK_IND_CL_DT") }}'
+      - name: INTN_RPTNG_IND_CL_ID
+        description: '{{ doc("tbl_SA_IP_INTN_RPTNG_IND_CL_ID") }}'
+      - name: INTN_RPTNG_IND_CL_DT
+        description: '{{ doc("tbl_SA_IP_INTN_RPTNG_IND_CL_DT") }}'
+      - name: ORG_ECNMC_INTNT_ID
+        description: '{{ doc("tbl_SA_IP_ORG_ECNMC_INTNT_ID") }}'
+      - name: ORG_ECNMC_INTNT_DT
+        description: '{{ doc("tbl_SA_IP_ORG_ECNMC_INTNT_DT") }}'
+      - name: ORG_LGL_STRC_TY_ID
+        description: '{{ doc("tbl_SA_IP_ORG_LGL_STRC_TY_ID") }}'
+      - name: ORG_LGL_STRC_DT
+        description: '{{ doc("tbl_SA_IP_ORG_LGL_STRC_DT") }}'
+      - name: ORG_NBR_OF_EMP_SEG_ID
+        description: '{{ doc("tbl_SA_IP_ORG_NBR_OF_EMP_SEG_ID") }}'
+      - name: ORG_NBR_OF_EMP_SEG_DT
+        description: '{{ doc("tbl_SA_IP_ORG_NBR_OF_EMP_SEG_DT") }}'
+      - name: ORG_PRPS_ID
+        description: '{{ doc("tbl_SA_IP_ORG_PRPS_ID") }}'
+      - name: ORG_PRPS_DT
+        description: '{{ doc("tbl_SA_IP_ORG_PRPS_DT") }}'
+      - name: ORG_REV_SEG_ID
+        description: '{{ doc("tbl_SA_IP_ORG_REV_SEG_ID") }}'
+      - name: ORG_REV_SEG_DT
+        description: '{{ doc("tbl_SA_IP_ORG_REV_SEG_DT") }}'
+      - name: INCORPTN_GEO_ID
+        description: '{{ doc("tbl_SA_IP_INCORPTN_GEO_ID") }}'
+      - name: INCORPTN_GEO_DT
+        description: '{{ doc("tbl_SA_IP_INCORPTN_GEO_DT") }}'
+      - name: ESTB_DT
+        description: '{{ doc("tbl_SA_IP_ESTB_DT") }}'
+      - name: ORG_LGLTY_END_DT
+        description: '{{ doc("tbl_SA_IP_ORG_LGLTY_END_DT") }}'
+      - name: DSSLVD_DT
+        description: '{{ doc("tbl_SA_IP_DSSLVD_DT") }}'
+      - name: PRMY_CMRCL_NM
+        description: '{{ doc("tbl_SA_IP_PRMY_CMRCL_NM") }}'
+      - name: RGSTRD_BSNS_NM
+        description: '{{ doc("tbl_SA_IP_RGSTRD_BSNS_NM") }}'
+      - name: ORG_CD
+        description: '{{ doc("tbl_SA_IP_ORG_CD") }}'
+      - name: ORG_OPERTL_AREA_TY_ID
+        description: '{{ doc("tbl_SA_IP_ORG_OPERTL_AREA_TY_ID") }}'
+      - name: ORG_OPERTL_AREA_TY_DT
+        description: '{{ doc("tbl_SA_IP_ORG_OPERTL_AREA_TY_DT") }}'
+      - name: OU_LC_STS_TY_ID
+        description: '{{ doc("tbl_SA_IP_OU_LC_STS_TY_ID") }}'
+      - name: OU_LC_STS_DT
+        description: '{{ doc("tbl_SA_IP_OU_LC_STS_DT") }}'
+      - name: OWNG_ORG_ID
+        description: '{{ doc("tbl_SA_IP_OWNG_ORG_ID") }}'
+      - name: MGR_EMP_ID
+        description: '{{ doc("tbl_SA_IP_MGR_EMP_ID") }}'
+      - name: OU_AUTH_DSGNTN_TY_ID
+        description: '{{ doc("tbl_SA_IP_OU_AUTH_DSGNTN_TY_ID") }}'
+      - name: OU_AUTH_DSGNTN_DT
+        description: '{{ doc("tbl_SA_IP_OU_AUTH_DSGNTN_DT") }}'
+      - name: OU_FNCTN_TY_ID
+        description: '{{ doc("tbl_SA_IP_OU_FNCTN_TY_ID") }}'
+      - name: OU_FNCTN_DT
+        description: '{{ doc("tbl_SA_IP_OU_FNCTN_DT") }}'
+      - name: LOB_ID
+        description: '{{ doc("tbl_SA_IP_LOB_ID") }}'
+      - name: LOB_DT
+        description: '{{ doc("tbl_SA_IP_LOB_DT") }}'
+      - name: OU_STRC_TY_ID
+        description: '{{ doc("tbl_SA_IP_OU_STRC_TY_ID") }}'
+      - name: OU_STRC_DT
+        description: '{{ doc("tbl_SA_IP_OU_STRC_DT") }}'
+      - name: BRNCH_NBR
+        description: '{{ doc("tbl_SA_IP_BRNCH_NBR") }}'
+      - name: OU_CD
+        description: '{{ doc("tbl_SA_IP_OU_CD") }}'
+      - name: OU_GEOG_ID
+        description: '{{ doc("tbl_SA_IP_OU_GEOG_ID") }}'
+      - name: OU_GEOG_DT
+        description: '{{ doc("tbl_SA_IP_OU_GEOG_DT") }}'
+      - name: SCL_MEDA_PSNA_NM
+        description: '{{ doc("tbl_SA_IP_SCL_MEDA_PSNA_NM") }}'
+      - name: SCL_MEDA_PSNA_EFFV_DT
+        description: '{{ doc("tbl_SA_IP_SCL_MEDA_PSNA_EFFV_DT") }}'
+      - name: SCL_MEDA_PSNA_RELBTY_RTNG_ID
+        description: '{{ doc("tbl_SA_IP_SCL_MEDA_PSNA_RELBTY_RTNG_ID") }}'
+      - name: SCL_MEDA_PSNA_PRMY_EMAIL_ADDR_ID
+        description: '{{ doc("tbl_SA_IP_SCL_MEDA_PSNA_PRMY_EMAIL_ADDR_ID") }}'
+      - name: CUST_LC_STS_TY_ID
+        description: '{{ doc("tbl_SA_IP_CUST_LC_STS_TY_ID") }}'
+      - name: CUST_LC_STS_DT
+        description: '{{ doc("tbl_SA_IP_CUST_LC_STS_DT") }}'
+      - name: CUST_MSEG_ID
+        description: '{{ doc("tbl_SA_IP_CUST_MSEG_ID") }}'
+      - name: CUST_MSEG_DT
+        description: '{{ doc("tbl_SA_IP_CUST_MSEG_DT") }}'
+      - name: CUST_RL_AGE_SEG_ID
+        description: '{{ doc("tbl_SA_IP_CUST_RL_AGE_SEG_ID") }}'
+      - name: CUST_RL_AGE_SEG_DT
+        description: '{{ doc("tbl_SA_IP_CUST_RL_AGE_SEG_DT") }}'
+      - name: CUST_PROFT_SEG_ID
+        description: '{{ doc("tbl_SA_IP_CUST_PROFT_SEG_ID") }}'
+      - name: CUST_PROFT_SEG_DT
+        description: '{{ doc("tbl_SA_IP_CUST_PROFT_SEG_DT") }}'
+      - name: SATSF_RTNG_ID
+        description: '{{ doc("tbl_SA_IP_SATSF_RTNG_ID") }}'
+      - name: SATSF_RTNG_DT
+        description: '{{ doc("tbl_SA_IP_SATSF_RTNG_DT") }}'
+      - name: RTN_RTNG_ID
+        description: '{{ doc("tbl_SA_IP_RTN_RTNG_ID") }}'
+      - name: RTN_RTNG_DT
+        description: '{{ doc("tbl_SA_IP_RTN_RTNG_DT") }}'
+      - name: PRMY_BRNCH_NBR
+        description: '{{ doc("tbl_SA_IP_PRMY_BRNCH_NBR") }}'
+      - name: PRMY_BRNCH_DT
+        description: '{{ doc("tbl_SA_IP_PRMY_BRNCH_DT") }}'
+      - name: PRMY_PRD_AR_ID
+        description: '{{ doc("tbl_SA_IP_PRMY_PRD_AR_ID") }}'
+      - name: END_CUST_DT
+        description: '{{ doc("tbl_SA_IP_END_CUST_DT") }}'
+      - name: GEO_ID
+        description: '{{ doc("tbl_SA_IP_GEO_ID") }}'
+      - name: EFFV_CUST_DT
+        description: '{{ doc("tbl_SA_IP_EFFV_CUST_DT") }}'
+      - name: INTRNT_BNK_FLG
+        description: '{{ doc("tbl_SA_IP_INTRNT_BNK_FLG") }}'
+      - name: PH_BNK_FLG
+        description: '{{ doc("tbl_SA_IP_PH_BNK_FLG") }}'
+      - name: SPCL_TRMS_FLG
+        description: '{{ doc("tbl_SA_IP_SPCL_TRMS_FLG") }}'
+      - name: CR_RSK_SCOR
+        description: '{{ doc("tbl_SA_IP_CR_RSK_SCOR") }}'
+        tests:
+          - not_null 
+          - valid_number_range:
+              from: 600
+              to: 800 
+  - name: SA_IP_PROF
+    description: '{{ doc("tbl_SA_IP_PROF") }}'
+    columns:
+      - name: EFFV_DT
+        description: '{{ doc("tbl_SA_IP_PROF_EFFV_DT") }}'
+      - name: DNMNTN_CUR_ID
+        description: '{{ doc("tbl_SA_IP_PROF_DNMNTN_CUR_ID") }}'
+      - name: IP_ID
+        description: '{{ doc("tbl_SA_IP_PROF_IP_ID") }}'
+        tests:
+          - unique
+          - not_null
+      - name: END_DT
+        description: '{{ doc("tbl_SA_IP_PROF_END_DT") }}'
+      - name: SRC_SYS_CD
+        description: '{{ doc("tbl_SA_IP_PROF_SRC_SYS_CD") }}'
+        tests:
+          - unique
+          - not_null
+          - validate_regex:
+              regex: '[C]{1}[0-9]{8}'
+      - name: SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_IP_PROF_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: EFFV_TS
+        description: '{{ doc("tbl_SA_IP_PROF_EFFV_TS") }}'
+      - name: END_TS
+        description: '{{ doc("tbl_SA_IP_PROF_END_TS") }}'
+      - name: TNNT_CD_ID
+        description: '{{ doc("tbl_SA_IP_PROF_TNNT_CD_ID") }}'
+      - name: BTCH_ID
+        description: '{{ doc("tbl_SA_IP_PROF_BTCH_ID") }}'
+      - name: ORGNL_CUR_ID
+        description: '{{ doc("tbl_SA_IP_PROF_ORGNL_CUR_ID") }}'
+      - name: XCHG_RTE_TO_ORGNL_CUR
+        description: '{{ doc("tbl_SA_IP_PROF_XCHG_RTE_TO_ORGNL_CUR") }}'
+      - name: PRFRD_CMM_FORM_ID
+        description: '{{ doc("tbl_SA_IP_PROF_PRFRD_CMM_FORM_ID") }}'
+      - name: PRMY_SRC_OF_INCM_TY_ID
+        description: '{{ doc("tbl_SA_IP_PROF_PRMY_SRC_OF_INCM_TY_ID") }}'
+      - name: NBR_OF_DPNDT_CHLD
+        description: '{{ doc("tbl_SA_IP_PROF_NBR_OF_DPNDT_CHLD") }}'
+      - name: NBR_OF_DEPND
+        description: '{{ doc("tbl_SA_IP_PROF_NBR_OF_DEPND") }}'
+      - name: MTHLY_HSNG_COST
+        description: '{{ doc("tbl_SA_IP_PROF_MTHLY_HSNG_COST") }}'
+      - name: HSNG_INS_COST_AMT
+        description: '{{ doc("tbl_SA_IP_PROF_HSNG_INS_COST_AMT") }}'
+      - name: YRS_AT_CRNT_ADDR
+        description: '{{ doc("tbl_SA_IP_PROF_YRS_AT_CRNT_ADDR") }}'
+      - name: HO_ASSOC_FEE
+        description: '{{ doc("tbl_SA_IP_PROF_HO_ASSOC_FEE") }}'
+      - name: IDV_ANNL_SLRY
+        description: '{{ doc("tbl_SA_IP_PROF_IDV_ANNL_SLRY") }}'
+      - name: IDV_OTHR_ANNL_INCM
+        description: '{{ doc("tbl_SA_IP_PROF_IDV_OTHR_ANNL_INCM") }}'
+      - name: IDV_NET_WRTH
+        description: '{{ doc("tbl_SA_IP_PROF_IDV_NET_WRTH") }}'
+      - name: IDV_AGE
+        description: '{{ doc("tbl_SA_IP_PROF_IDV_AGE") }}'
+        tests:
+          - not_null
+          - valid_number_range:
+              from: 0
+              to: 140 
+      - name: IDV_OTHR_NFNC_ASSET
+        description: '{{ doc("tbl_SA_IP_PROF_IDV_OTHR_NFNC_ASSET") }}'
+      - name: IDV_REAL_PRPRTY_ASSET
+        description: '{{ doc("tbl_SA_IP_PROF_IDV_REAL_PRPRTY_ASSET") }}'
+      - name: IDV_FNC_ASSET
+        description: '{{ doc("tbl_SA_IP_PROF_IDV_FNC_ASSET") }}'
+      - name: IDV_LIBLTY
+        description: '{{ doc("tbl_SA_IP_PROF_IDV_LIBLTY") }}'
+      - name: NO_OF_MEMB
+        description: '{{ doc("tbl_SA_IP_PROF_NO_OF_MEMB") }}'
+      - name: NO_OF_EMP
+        description: '{{ doc("tbl_SA_IP_PROF_NO_OF_EMP") }}'
+      - name: FXD_ASSET
+        description: '{{ doc("tbl_SA_IP_PROF_FXD_ASSET") }}'
+      - name: CRNT_ASSET
+        description: '{{ doc("tbl_SA_IP_PROF_CRNT_ASSET") }}'
+      - name: SHRT_TERM_CRDTR
+        description: '{{ doc("tbl_SA_IP_PROF_SHRT_TERM_CRDTR") }}'
+      - name: TOT_BRRW
+        description: '{{ doc("tbl_SA_IP_PROF_TOT_BRRW") }}'
+      - name: CAP_AND_RSRVS
+        description: '{{ doc("tbl_SA_IP_PROF_CAP_AND_RSRVS") }}'
+      - name: ANNL_PRE_TAX_PROFT
+        description: '{{ doc("tbl_SA_IP_PROF_ANNL_PRE_TAX_PROFT") }}'
+      - name: ANNL_SALE_REV
+        description: '{{ doc("tbl_SA_IP_PROF_ANNL_SALE_REV") }}'
+      - name: CSH_FLW
+        description: '{{ doc("tbl_SA_IP_PROF_CSH_FLW") }}'
+      - name: THREE_YR_AVG_ANNL_GRS_INCM
+        description: '{{ doc("tbl_SA_IP_PROF_THREE_YR_AVG_ANNL_GRS_INCM") }}'
+      - name: VAL_ADD_PROFT
+        description: '{{ doc("tbl_SA_IP_PROF_VAL_ADD_PROFT") }}'
+      - name: TOT_EQTY
+        description: '{{ doc("tbl_SA_IP_PROF_TOT_EQTY") }}'
+      - name: ROE
+        description: '{{ doc("tbl_SA_IP_PROF_ROE") }}'
+      - name: EPS
+        description: '{{ doc("tbl_SA_IP_PROF_EPS") }}'
+      - name: AVG_SHR_PRC
+        description: '{{ doc("tbl_SA_IP_PROF_AVG_SHR_PRC") }}'
+      - name: SHR_PRC_HI
+        description: '{{ doc("tbl_SA_IP_PROF_SHR_PRC_HI") }}'
+      - name: SHR_PRC_LOW
+        description: '{{ doc("tbl_SA_IP_PROF_SHR_PRC_LOW") }}'
+      - name: PE_RAT
+        description: '{{ doc("tbl_SA_IP_PROF_PE_RAT") }}'
+      - name: ERN_TO_FXD_COST_RAT
+        description: '{{ doc("tbl_SA_IP_PROF_ERN_TO_FXD_COST_RAT") }}'
+      - name: ASSET_TRNVR_RAT
+        description: '{{ doc("tbl_SA_IP_PROF_ASSET_TRNVR_RAT") }}'
+      - name: DEBT_TO_EQTY_RAT
+        description: '{{ doc("tbl_SA_IP_PROF_DEBT_TO_EQTY_RAT") }}'
+      - name: COST_TO_INCM_RAT
+        description: '{{ doc("tbl_SA_IP_PROF_COST_TO_INCM_RAT") }}'
+      - name: NON_II_RAT
+        description: '{{ doc("tbl_SA_IP_PROF_NON_II_RAT") }}'
+      - name: STAFF_COST_RAT
+        description: '{{ doc("tbl_SA_IP_PROF_STAFF_COST_RAT") }}'
+      - name: COST_TO_ASSET_RAT
+        description: '{{ doc("tbl_SA_IP_PROF_COST_TO_ASSET_RAT") }}'
+      - name: CRNT_RAT
+        description: '{{ doc("tbl_SA_IP_PROF_CRNT_RAT") }}'
+      - name: RCPTL_AMT
+        description: '{{ doc("tbl_SA_IP_PROF_RCPTL_AMT") }}'
+      - name: DSCRT_CAP_AMT
+        description: '{{ doc("tbl_SA_IP_PROF_DSCRT_CAP_AMT") }}'
+      - name: NET_WRKNG_CAP
+        description: '{{ doc("tbl_SA_IP_PROF_NET_WRKNG_CAP") }}'
+      - name: LLP
+        description: '{{ doc("tbl_SA_IP_PROF_LLP") }}'
+      - name: CAP_GEAR
+        description: '{{ doc("tbl_SA_IP_PROF_CAP_GEAR") }}'
+      - name: CAPTL_PCT
+        description: '{{ doc("tbl_SA_IP_PROF_CAPTL_PCT") }}'
+      - name: ROI
+        description: '{{ doc("tbl_SA_IP_PROF_ROI") }}'
+  - name: SA_IP_PSTL_ADDRESSES
+    description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES") }}'
+    columns:
+      - name: IP_ID
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_IP_ID") }}'
+        tests:
+          - unique
+          - not_null
+      - name: IP_TO_PSTL_ADDR_RL_TY_ID
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_IP_TO_PSTL_ADDR_RL_TY_ID") }}'
+      - name: EFFV_DT
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_EFFV_DT") }}'
+      - name: RNK
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_RNK") }}'
+      - name: END_DT
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_END_DT") }}'
+      - name: SRC_SYS_CD
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_SRC_SYS_CD") }}'
+      - name: SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: EFFV_TS
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_EFFV_TS") }}'
+      - name: END_TS
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_END_TS") }}'
+      - name: TNNT_CD_ID
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_TNNT_CD_ID") }}'
+      - name: BTCH_ID
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_BTCH_ID") }}'
+      - name: IP_SRC_SYS_CD
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_IP_SRC_SYS_CD") }}'
+        tests:
+          - unique
+          - not_null
+          - validate_regex:
+              regex: '[C]{1}[0-9]{8}'
+      - name: IP_SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_IP_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: DESC
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_DESC") }}'
+      - name: CNTNTY_OF_ADDR_SEG_ID
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_CNTNTY_OF_ADDR_SEG_ID") }}'
+      - name: CNTCT_TXT
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_CNTCT_TXT") }}'
+      - name: SOLCT_FLG
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_SOLCT_FLG") }}'
+      - name: ADDR_NM
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_ADDR_NM") }}'
+        tests:
+          - not_null 
+      - name: BOX_NBR
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_BOX_NBR") }}'
+      - name: UNT_NBR
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_UNT_NBR") }}'
+      - name: BLDG_NBR
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_BLDG_NBR") }}'
+      - name: STE_NBR
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_STE_NBR") }}'
+      - name: STE_NM
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_STE_NM") }}'
+      - name: STE_TY
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_STE_TY") }}'
+      - name: STE_DRCTN
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_STE_DRCTN") }}'
+      - name: STE_SFX
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_STE_SFX") }}'
+      - name: PSTCD_AREA_ID
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_PSTCD_AREA_ID") }}'
+        tests:
+          - not_null
+      - name: DSTRCT
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_DSTRCT") }}'
+        tests:
+          - not_null
+          - valid_number_range:
+              from: 1
+              to: 77 
+      - name: CITY_ID
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_CITY_ID") }}'
+        tests:
+          - not_null
+      - name: ST_ID
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_ST_ID") }}'
+        tests:
+          - not_null
+      - name: CNTY_ID
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_CNTY_ID") }}'
+      - name: CNTRY_ID
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_CNTRY_ID") }}'
+      - name: RT_ID
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_RT_ID") }}'
+      - name: CENSUS_AREA_ID
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_CENSUS_AREA_ID") }}'
+      - name: BLDG_TY_ID
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_BLDG_TY_ID") }}'
+      - name: LONGD
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_LONGD") }}'
+      - name: LATD
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_LATD") }}'
+      - name: PSTL_BARCDE
+        description: '{{ doc("tbl_SA_IP_PSTL_ADDRESSES_PSTL_BARCDE") }}'
+  - name: SA_IP_ELTRN_ADDR
+    description: '{{ doc("tbl_SA_IP_ELTRN_ADDR") }}'
+    columns:
+      - name: IP_ID
+        description: '{{ doc("tbl_SA_IP_ELTRN_ADDR_IP_ID") }}'
+        tests:
+          - unique
+          - not_null
+      - name: IP_TO_ELTRN_ADDR_RL_TY_ID
+        description: '{{ doc("tbl_SA_IP_ELTRN_ADDR_IP_TO_ELTRN_ADDR_RL_TY_ID") }}'
+      - name: EFFV_DT
+        description: '{{ doc("tbl_SA_IP_ELTRN_ADDR_EFFV_DT") }}'
+        tests:
+          - not_null
+      - name: RNK
+        description: '{{ doc("tbl_SA_IP_ELTRN_ADDR_RNK") }}'
+      - name: END_DT
+        description: '{{ doc("tbl_SA_IP_ELTRN_ADDR_END_DT") }}'
+      - name: SRC_SYS_CD
+        description: '{{ doc("tbl_SA_IP_ELTRN_ADDR_SRC_SYS_CD") }}'
+        tests:
+          - not_null
+      - name: SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_IP_ELTRN_ADDR_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: EFFV_TS
+        description: '{{ doc("tbl_SA_IP_ELTRN_ADDR_EFFV_TS") }}'
+      - name: END_TS
+        description: '{{ doc("tbl_SA_IP_ELTRN_ADDR_END_TS") }}'
+      - name: TNNT_CD_ID
+        description: '{{ doc("tbl_SA_IP_ELTRN_ADDR_TNNT_CD_ID") }}'
+      - name: BTCH_ID
+        description: '{{ doc("tbl_SA_IP_ELTRN_ADDR_BTCH_ID") }}'
+      - name: IP_SRC_SYS_CD
+        description: '{{ doc("tbl_SA_IP_ELTRN_ADDR_IP_SRC_SYS_CD") }}'
+        tests:
+          - unique
+          - not_null
+          - validate_regex:
+              regex: '[C]{1}[0-9]{8}'
+      - name: IP_SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_IP_ELTRN_ADDR_IP_SRC_SYS_UNQ_KEY_TXT") }}'
+        tests:
+          - not_null
+      - name: ELTRN_ADDR_TY_ID
+        description: '{{ doc("tbl_SA_IP_ELTRN_ADDR_ELTRN_ADDR_TY_ID") }}'
+        tests:
+          - not_null
+          - validate_regex:
+              regex: '[0-9]{2}\.[0-9]{3}\.[0-9]{2}\.[0-9]{3}' 
+      - name: TLPHNC_DVC_TY_ID
+        description: '{{ doc("tbl_SA_IP_ELTRN_ADDR_TLPHNC_DVC_TY_ID") }}'
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['android', 'ios']
+      - name: GRNULE
+        description: '{{ doc("tbl_SA_IP_ELTRN_ADDR_GRNULE") }}'
+      - name: CNTRY_PH_CD
+        description: '{{ doc("tbl_SA_IP_ELTRN_ADDR_CNTRY_PH_CD") }}'
+      - name: PH_CD
+        description: '{{ doc("tbl_SA_IP_ELTRN_ADDR_PH_CD") }}'
+      - name: LCL_NBR
+        description: '{{ doc("tbl_SA_IP_ELTRN_ADDR_LCL_NBR") }}'
+      - name: EXTNSN
+        description: '{{ doc("tbl_SA_IP_ELTRN_ADDR_EXTNSN") }}'
+        tests:
+          - not_null
+      - name: FL_PH_NBR
+        description: '{{ doc("tbl_SA_IP_ELTRN_ADDR_FL_PH_NBR") }}'
+        tests:
+          - validate_regex:
+              regex: '[0-9]{3}-[0-9]{3}-[0-9]{4}' 
+      - name: EMAIL_USR_ID
+        description: '{{ doc("tbl_SA_IP_ELTRN_ADDR_EMAIL_USR_ID") }}'
+        tests:
+          - validate_regex:
+              regex: '[a-z0-9]+\.[a-z0-9]+\.+[a-z0-9]+@[a-z0-9]+\.[a-z]+' 
+      - name: MAXM_MSG_SZ
+        description: '{{ doc("tbl_SA_IP_ELTRN_ADDR_MAXM_MSG_SZ") }}'
+      - name: ATTAC_ALWD_FLG
+        description: '{{ doc("tbl_SA_IP_ELTRN_ADDR_ATTAC_ALWD_FLG") }}'
+      - name: TXT_ONLY_FLG
+        description: '{{ doc("tbl_SA_IP_ELTRN_ADDR_TXT_ONLY_FLG") }}'
+      - name: ELTRN_ADDR_DM_ID
+        description: '{{ doc("tbl_SA_IP_ELTRN_ADDR_ELTRN_ADDR_DM_ID") }}'
+      - name: WEB_ADDR_TY_ID
+        description: '{{ doc("tbl_SA_IP_ELTRN_ADDR_WEB_ADDR_TY_ID") }}'
+      - name: WEB_ADDR_PRTCL_TY_ID
+        description: '{{ doc("tbl_SA_IP_ELTRN_ADDR_WEB_ADDR_PRTCL_TY_ID") }}'
+      - name: URL
+        description: '{{ doc("tbl_SA_IP_ELTRN_ADDR_URL") }}'
+  - name: SA_AR_TO_SA_IP_RL
+    description: '{{ doc("tbl_SA_AR_TO_SA_IP_RL") }}'
+    columns:
+      - name: IP_ID
+        description: '{{ doc("tbl_SA_AR_TO_SA_IP_RL_IP_ID") }}'
+        tests:
+          - unique
+          - not_null
+      - name: AR_TO_IP_RL_TY_ID
+        description: '{{ doc("tbl_SA_AR_TO_SA_IP_RL_AR_TO_IP_RL_TY_ID") }}'
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Owner', 'User']
+      - name: AR_ID
+        description: '{{ doc("tbl_SA_AR_TO_SA_IP_RL_AR_ID") }}'
+      - name: EFFV_DT
+        description: '{{ doc("tbl_SA_AR_TO_SA_IP_RL_EFFV_DT") }}'
+      - name: END_DT
+        description: '{{ doc("tbl_SA_AR_TO_SA_IP_RL_END_DT") }}'
+      - name: SRC_SYS_CD
+        description: '{{ doc("tbl_SA_AR_TO_SA_IP_RL_SRC_SYS_CD") }}'
+        tests:
+          - not_null
+          - validate_regex:
+              regex: '[A]{1}[0-9]{8}' 
+      - name: SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_AR_TO_SA_IP_RL_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: EFFV_TS
+        description: '{{ doc("tbl_SA_AR_TO_SA_IP_RL_EFFV_TS") }}'
+      - name: END_TS
+        description: '{{ doc("tbl_SA_AR_TO_SA_IP_RL_END_TS") }}'
+      - name: TNNT_CD_ID
+        description: '{{ doc("tbl_SA_AR_TO_SA_IP_RL_TNNT_CD_ID") }}'
+      - name: BTCH_ID
+        description: '{{ doc("tbl_SA_AR_TO_SA_IP_RL_BTCH_ID") }}'
+      - name: AR_SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_AR_TO_SA_IP_RL_AR_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: AR_SRC_SYS_CD
+        description: '{{ doc("tbl_SA_AR_TO_SA_IP_RL_AR_SRC_SYS_CD") }}'
+        tests:
+          - unique
+          - not_null
+          - validate_regex:
+              regex: '[D]{1}[0-9]{8}' 
+      - name: IP_SRC_SYS_CD
+        description: '{{ doc("tbl_SA_AR_TO_SA_IP_RL_IP_SRC_SYS_CD") }}'
+        tests:
+          - unique
+          - not_null
+          - validate_regex:
+              regex: '[C]{1}[0-9]{8}' 
+      - name: IP_SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_AR_TO_SA_IP_RL_IP_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: DESC
+        description: '{{ doc("tbl_SA_AR_TO_SA_IP_RL_DESC") }}'
+      - name: PCT_AMT
+        description: '{{ doc("tbl_SA_AR_TO_SA_IP_RL_PCT_AMT") }}'
+  - name: SA_CHNL
+    description: '{{ doc("tbl_SA_CHNL") }}'
+    columns:
+      - name: CHNL_ID
+        description: '{{ doc("tbl_SA_CHNL_CHNL_ID") }}'
+        tests:
+          - unique
+          - not_null
+      - name: SRC_SYS_CD
+        description: '{{ doc("tbl_SA_CHNL_SRC_SYS_CD") }}'
+      - name: SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_CHNL_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: EFFV_TS
+        description: '{{ doc("tbl_SA_CHNL_EFFV_TS") }}'
+      - name: END_TS
+        description: '{{ doc("tbl_SA_CHNL_END_TS") }}'
+      - name: TNNT_CD_ID
+        description: '{{ doc("tbl_SA_CHNL_TNNT_CD_ID") }}'
+      - name: BTCH_ID
+        description: '{{ doc("tbl_SA_CHNL_BTCH_ID") }}'
+      - name: END_DT
+        description: '{{ doc("tbl_SA_CHNL_END_DT") }}'
+      - name: EFFV_DT
+        description: '{{ doc("tbl_SA_CHNL_EFFV_DT") }}'
+      - name: CHNL_TXT
+        description: '{{ doc("tbl_SA_CHNL_CHNL_TXT") }}'
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Web', 'Email', 'Mobile', 'Call', 'Phone', 'Postal mail', 'Referral', 'Fax']
+      - name: CHNL_NM
+        description: '{{ doc("tbl_SA_CHNL_CHNL_NM") }}'
+      - name: CHNL_CD
+        description: '{{ doc("tbl_SA_CHNL_CHNL_CD") }}'
+      - name: DESC
+        description: '{{ doc("tbl_SA_CHNL_DESC") }}'
+      - name: CHNL_TY_ID
+        description: '{{ doc("tbl_SA_CHNL_CHNL_TY_ID") }}'
+      - name: CHNL_LC_STS_TY_ID
+        description: '{{ doc("tbl_SA_CHNL_CHNL_LC_STS_TY_ID") }}'
+      - name: CHNL_LC_STS_RSN_TY_ID
+        description: '{{ doc("tbl_SA_CHNL_CHNL_LC_STS_RSN_TY_ID") }}'
+      - name: CHNL_FNCTN_TY_ID
+        description: '{{ doc("tbl_SA_CHNL_CHNL_FNCTN_TY_ID") }}'
+      - name: CHNL_CMM_FORM_ID
+        description: '{{ doc("tbl_SA_CHNL_CHNL_CMM_FORM_ID") }}'
+      - name: CHNL_CMM_DRCTN_ID
+        description: '{{ doc("tbl_SA_CHNL_CHNL_CMM_DRCTN_ID") }}'
+      - name: CHNL_DLVRY_TMFRM_TY_ID
+        description: '{{ doc("tbl_SA_CHNL_CHNL_DLVRY_TMFRM_TY_ID") }}'
+      - name: CHNL_OWNRSH_TY_ID
+        description: '{{ doc("tbl_SA_CHNL_CHNL_OWNRSH_TY_ID") }}'
+      - name: ADMN_IP_ID
+        description: '{{ doc("tbl_SA_CHNL_ADMN_IP_ID") }}'
+      - name: DLVRY_IP_ID
+        description: '{{ doc("tbl_SA_CHNL_DLVRY_IP_ID") }}'
+      - name: RI_CHNL_FLG
+        description: '{{ doc("tbl_SA_CHNL_RI_CHNL_FLG") }}'
+      - name: DLVRY_RI_ID
+        description: '{{ doc("tbl_SA_CHNL_DLVRY_RI_ID") }}'
+  - name: SA_CPGN_SEG_ACTVTY
+    description: '{{ doc("tbl_SA_CPGN_SEG_ACTVTY") }}'
+    columns:
+      - name: CPGN_ID
+        description: '{{ doc("tbl_SA_CPGN_SEG_ACTVTY_CPGN_ID") }}'
+        tests:
+          - unique
+          - not_null
+      - name: SEG_ID
+        description: '{{ doc("tbl_SA_CPGN_SEG_ACTVTY_SEG_ID") }}'
+      - name: SCENR_ID
+        description: '{{ doc("tbl_SA_CPGN_SEG_ACTVTY_SCENR_ID") }}'
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['AutoLoan', 'Credit', 'Deposit', 'HomeLoan', 'Investing']
+      - name: SRC_SYS_CD
+        description: '{{ doc("tbl_SA_CPGN_SEG_ACTVTY_SRC_SYS_CD") }}'
+        tests:
+          - not_null
+          - validate_regex:
+              regex: '[C]{1}[0-9]{8}'
+      - name: SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_CPGN_SEG_ACTVTY_SRC_SYS_UNQ_KEY_TXT") }}'
+        tests:
+          - not_null
+          - validate_regex:
+              regex: '[A]{1}[0-9]{8}' 
+      - name: EFFV_TS
+        description: '{{ doc("tbl_SA_CPGN_SEG_ACTVTY_EFFV_TS") }}'
+      - name: END_TS
+        description: '{{ doc("tbl_SA_CPGN_SEG_ACTVTY_END_TS") }}'
+      - name: TNNT_CD_ID
+        description: '{{ doc("tbl_SA_CPGN_SEG_ACTVTY_TNNT_CD_ID") }}'
+      - name: BTCH_ID
+        description: '{{ doc("tbl_SA_CPGN_SEG_ACTVTY_BTCH_ID") }}'
+      - name: NBR_OF_SEG_CPGN_CMM
+        description: '{{ doc("tbl_SA_CPGN_SEG_ACTVTY_NBR_OF_SEG_CPGN_CMM") }}'
+      - name: SEG_ACTVTY_LC_STS_TY_ID
+        description: '{{ doc("tbl_SA_CPGN_SEG_ACTVTY_SEG_ACTVTY_LC_STS_TY_ID") }}'
+      - name: SEG_ACTVTY_LC_STS_RSN_TY_ID
+        description: '{{ doc("tbl_SA_CPGN_SEG_ACTVTY_SEG_ACTVTY_LC_STS_RSN_TY_ID") }}'
+      - name: SEG_DLV_AMT_UOM_ID
+        description: '{{ doc("tbl_SA_CPGN_SEG_ACTVTY_SEG_DLV_AMT_UOM_ID") }}'
+      - name: SEG_DLV_AMT
+        description: '{{ doc("tbl_SA_CPGN_SEG_ACTVTY_SEG_DLV_AMT") }}'
+      - name: MAXM_TRG_NBR
+        description: '{{ doc("tbl_SA_CPGN_SEG_ACTVTY_MAXM_TRG_NBR") }}'
+      - name: EXPCT_STRT_DT
+        description: '{{ doc("tbl_SA_CPGN_SEG_ACTVTY_EXPCT_STRT_DT") }}'
+      - name: EXPCT_END_DT
+        description: '{{ doc("tbl_SA_CPGN_SEG_ACTVTY_EXPCT_END_DT") }}'
+      - name: ACTL_STRT_DT
+        description: '{{ doc("tbl_SA_CPGN_SEG_ACTVTY_ACTL_STRT_DT") }}'
+        tests:
+          - not_null
+      - name: ACTL_END_DT
+        description: '{{ doc("tbl_SA_CPGN_SEG_ACTVTY_ACTL_END_DT") }}'
+      - name: RSLT_END_DT
+        description: '{{ doc("tbl_SA_CPGN_SEG_ACTVTY_RSLT_END_DT") }}'
+      - name: CPGN_SEG_ACTVTY_NM
+        description: '{{ doc("tbl_SA_CPGN_SEG_ACTVTY_CPGN_SEG_ACTVTY_NM") }}'
+        tests:
+          - not_null
+      - name: SEG_COST_AMT
+        description: '{{ doc("tbl_SA_CPGN_SEG_ACTVTY_SEG_COST_AMT") }}'
+      - name: DESC
+        description: '{{ doc("tbl_SA_CPGN_SEG_ACTVTY_DESC") }}'
+      - name: CPGN_SEG_ACTVTY_NBR
+        description: '{{ doc("tbl_SA_CPGN_SEG_ACTVTY_CPGN_SEG_ACTVTY_NBR") }}'
+      - name: CMPNAVY_TY_ID
+        description: '{{ doc("tbl_SA_CPGN_SEG_ACTVTY_CMPNAVY_TY_ID") }}'
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Click', 'Considering', 'Conversion', 'Lead', 'Offered', 'Open', 'Presented', 'Sent']
+      - name: CPGN_LC_STS_RSN_TY_ID
+        description: '{{ doc("tbl_SA_CPGN_SEG_ACTVTY_CPGN_LC_STS_RSN_TY_ID") }}'
+      - name: ACTVTY_LC_STS_TY_ID
+        description: '{{ doc("tbl_SA_CPGN_SEG_ACTVTY_ACTVTY_LC_STS_TY_ID") }}'
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Awareness', 'Interest', 'Discovery', 'Conversion']
+      - name: CHNL_ID
+        description: '{{ doc("tbl_SA_CPGN_SEG_ACTVTY_CHNL_ID") }}'
+        tests:
+          - not_null
+      - name: NBR_OF_CPGN_CMM
+        description: '{{ doc("tbl_SA_CPGN_SEG_ACTVTY_NBR_OF_CPGN_CMM") }}'
+      - name: CPGN_COST_AMT
+        description: '{{ doc("tbl_SA_CPGN_SEG_ACTVTY_CPGN_COST_AMT") }}'
+      - name: TRMN_ACTVTY_FLG
+        description: '{{ doc("tbl_SA_CPGN_SEG_ACTVTY_TRMN_ACTVTY_FLG") }}'
+      - name: CMPNAVY_DESC
+        description: '{{ doc("tbl_SA_CPGN_SEG_ACTVTY_CMPNAVY_DESC") }}'
+      - name: CMPNAVY_NM
+        description: '{{ doc("tbl_SA_CPGN_SEG_ACTVTY_CMPNAVY_NM") }}'
+  - name: SA_AR_PSTL_ADDR
+    description: '{{ doc("tbl_SA_AR_PSTL_ADDR") }}'
+    columns:
+      - name: AR_ID
+        description: '{{ doc("tbl_SA_AR_PSTL_ADDR_AR_ID") }}'
+      - name: AR_TO_PSTL_ADDR_RL_TY_ID
+        description: '{{ doc("tbl_SA_AR_PSTL_ADDR_AR_TO_PSTL_ADDR_RL_TY_ID") }}'
+      - name: EFFV_DT
+        description: '{{ doc("tbl_SA_AR_PSTL_ADDR_EFFV_DT") }}'
+      - name: RNK
+        description: '{{ doc("tbl_SA_AR_PSTL_ADDR_RNK") }}'
+      - name: END_DT
+        description: '{{ doc("tbl_SA_AR_PSTL_ADDR_END_DT") }}'
+      - name: TNNT_CD_ID
+        description: '{{ doc("tbl_SA_AR_PSTL_ADDR_TNNT_CD_ID") }}'
+      - name: SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_AR_PSTL_ADDR_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: EFFV_TS
+        description: '{{ doc("tbl_SA_AR_PSTL_ADDR_EFFV_TS") }}'
+      - name: END_TS
+        description: '{{ doc("tbl_SA_AR_PSTL_ADDR_END_TS") }}'
+      - name: SRC_SYS_CD
+        description: '{{ doc("tbl_SA_AR_PSTL_ADDR_SRC_SYS_CD") }}'
+      - name: BTCH_ID
+        description: '{{ doc("tbl_SA_AR_PSTL_ADDR_BTCH_ID") }}'
+      - name: AR_SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_AR_PSTL_ADDR_AR_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: AR_SRC_SYS_CD
+        description: '{{ doc("tbl_SA_AR_PSTL_ADDR_AR_SRC_SYS_CD") }}'
+      - name: ADDR_NM
+        description: '{{ doc("tbl_SA_AR_PSTL_ADDR_ADDR_NM") }}'
+      - name: UNT_NBR
+        description: '{{ doc("tbl_SA_AR_PSTL_ADDR_UNT_NBR") }}'
+      - name: BLDG_NBR
+        description: '{{ doc("tbl_SA_AR_PSTL_ADDR_BLDG_NBR") }}'
+      - name: STE_NBR
+        description: '{{ doc("tbl_SA_AR_PSTL_ADDR_STE_NBR") }}'
+      - name: STE_NM
+        description: '{{ doc("tbl_SA_AR_PSTL_ADDR_STE_NM") }}'
+      - name: STE_TY
+        description: '{{ doc("tbl_SA_AR_PSTL_ADDR_STE_TY") }}'
+      - name: STE_DRCTN
+        description: '{{ doc("tbl_SA_AR_PSTL_ADDR_STE_DRCTN") }}'
+      - name: STE_SFX
+        description: '{{ doc("tbl_SA_AR_PSTL_ADDR_STE_SFX") }}'
+      - name: PSTCD_AREA_ID
+        description: '{{ doc("tbl_SA_AR_PSTL_ADDR_PSTCD_AREA_ID") }}'
+      - name: DSTRCT
+        description: '{{ doc("tbl_SA_AR_PSTL_ADDR_DSTRCT") }}'
+      - name: CITY_ID
+        description: '{{ doc("tbl_SA_AR_PSTL_ADDR_CITY_ID") }}'
+      - name: ST_ID
+        description: '{{ doc("tbl_SA_AR_PSTL_ADDR_ST_ID") }}'
+      - name: CNTY_ID
+        description: '{{ doc("tbl_SA_AR_PSTL_ADDR_CNTY_ID") }}'
+      - name: CNTRY_ID
+        description: '{{ doc("tbl_SA_AR_PSTL_ADDR_CNTRY_ID") }}'
+      - name: RT_ID
+        description: '{{ doc("tbl_SA_AR_PSTL_ADDR_RT_ID") }}'
+      - name: CENSUS_AREA_ID
+        description: '{{ doc("tbl_SA_AR_PSTL_ADDR_CENSUS_AREA_ID") }}'
+      - name: BLDG_TY_ID
+        description: '{{ doc("tbl_SA_AR_PSTL_ADDR_BLDG_TY_ID") }}'
+      - name: LONGD
+        description: '{{ doc("tbl_SA_AR_PSTL_ADDR_LONGD") }}'
+      - name: LATD
+        description: '{{ doc("tbl_SA_AR_PSTL_ADDR_LATD") }}'
+      - name: PSTL_BARCDE
+        description: '{{ doc("tbl_SA_AR_PSTL_ADDR_PSTL_BARCDE") }}'
+  - name: SA_AR_TO_SA_AR_RL
+    description: '{{ doc("tbl_SA_AR_TO_SA_AR_RL") }}'
+    columns:
+      - name: OBJ_AR_ID
+        description: '{{ doc("tbl_SA_AR_TO_SA_AR_RL_OBJ_AR_ID") }}'
+      - name: SUBJT_AR_ID
+        description: '{{ doc("tbl_SA_AR_TO_SA_AR_RL_SUBJT_AR_ID") }}'
+      - name: AR_TO_AR_RL_TY_ID
+        description: '{{ doc("tbl_SA_AR_TO_SA_AR_RL_AR_TO_AR_RL_TY_ID") }}'
+      - name: EFFV_DT
+        description: '{{ doc("tbl_SA_AR_TO_SA_AR_RL_EFFV_DT") }}'
+      - name: END_DT
+        description: '{{ doc("tbl_SA_AR_TO_SA_AR_RL_END_DT") }}'
+      - name: SRC_SYS_CD
+        description: '{{ doc("tbl_SA_AR_TO_SA_AR_RL_SRC_SYS_CD") }}'
+      - name: SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_AR_TO_SA_AR_RL_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: EFFV_TS
+        description: '{{ doc("tbl_SA_AR_TO_SA_AR_RL_EFFV_TS") }}'
+      - name: END_TS
+        description: '{{ doc("tbl_SA_AR_TO_SA_AR_RL_END_TS") }}'
+      - name: BTCH_ID
+        description: '{{ doc("tbl_SA_AR_TO_SA_AR_RL_BTCH_ID") }}'
+      - name: TNNT_CD_ID
+        description: '{{ doc("tbl_SA_AR_TO_SA_AR_RL_TNNT_CD_ID") }}'
+      - name: SUBJT_AR_SRC_SYS_CD
+        description: '{{ doc("tbl_SA_AR_TO_SA_AR_RL_SUBJT_AR_SRC_SYS_CD") }}'
+      - name: SUBJT_AR_SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_AR_TO_SA_AR_RL_SUBJT_AR_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: OBJ_AR_SRC_SYS_CD
+        description: '{{ doc("tbl_SA_AR_TO_SA_AR_RL_OBJ_AR_SRC_SYS_CD") }}'
+      - name: OBJ_AR_SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_AR_TO_SA_AR_RL_OBJ_AR_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: AR_X_AR_RL_LC_STS_TY_ID
+        description: '{{ doc("tbl_SA_AR_TO_SA_AR_RL_AR_X_AR_RL_LC_STS_TY_ID") }}'
+      - name: RL_LC_STS_DT
+        description: '{{ doc("tbl_SA_AR_TO_SA_AR_RL_RL_LC_STS_DT") }}'
+      - name: DESC
+        description: '{{ doc("tbl_SA_AR_TO_SA_AR_RL_DESC") }}'
+      - name: PCT_AMT
+        description: '{{ doc("tbl_SA_AR_TO_SA_AR_RL_PCT_AMT") }}'
+  - name: SA_AR_TO_SA_GRP
+    description: '{{ doc("tbl_SA_AR_TO_SA_GRP") }}'
+    columns:
+      - name: AR_ID
+        description: '{{ doc("tbl_SA_AR_TO_SA_GRP_AR_ID") }}'
+      - name: GRP_ID
+        description: '{{ doc("tbl_SA_AR_TO_SA_GRP_GRP_ID") }}'
+      - name: EFFV_DT
+        description: '{{ doc("tbl_SA_AR_TO_SA_GRP_EFFV_DT") }}'
+      - name: AR_TO_GRP_RL_TY_ID
+        description: '{{ doc("tbl_SA_AR_TO_SA_GRP_AR_TO_GRP_RL_TY_ID") }}'
+      - name: END_DT
+        description: '{{ doc("tbl_SA_AR_TO_SA_GRP_END_DT") }}'
+      - name: SRC_SYS_CD
+        description: '{{ doc("tbl_SA_AR_TO_SA_GRP_SRC_SYS_CD") }}'
+      - name: SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_AR_TO_SA_GRP_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: EFFV_TS
+        description: '{{ doc("tbl_SA_AR_TO_SA_GRP_EFFV_TS") }}'
+      - name: END_TS
+        description: '{{ doc("tbl_SA_AR_TO_SA_GRP_END_TS") }}'
+      - name: TNNT_CD_ID
+        description: '{{ doc("tbl_SA_AR_TO_SA_GRP_TNNT_CD_ID") }}'
+      - name: BTCH_ID
+        description: '{{ doc("tbl_SA_AR_TO_SA_GRP_BTCH_ID") }}'
+      - name: AR_SRC_SYS_CD
+        description: '{{ doc("tbl_SA_AR_TO_SA_GRP_AR_SRC_SYS_CD") }}'
+      - name: AR_SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_AR_TO_SA_GRP_AR_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: GRP_SRC_SYS_CD
+        description: '{{ doc("tbl_SA_AR_TO_SA_GRP_GRP_SRC_SYS_CD") }}'
+      - name: GRP_SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_AR_TO_SA_GRP_GRP_SRC_SYS_UNQ_KEY_TXT") }}'
+  - name: SA_AR_TO_SA_PRD_RL
+    description: '{{ doc("tbl_SA_AR_TO_SA_PRD_RL") }}'
+    columns:
+      - name: AR_TO_PRD_RL_TY_ID
+        description: '{{ doc("tbl_SA_AR_TO_SA_PRD_RL_AR_TO_PRD_RL_TY_ID") }}'
+      - name: EFFV_DT
+        description: '{{ doc("tbl_SA_AR_TO_SA_PRD_RL_EFFV_DT") }}'
+      - name: AR_ID
+        description: '{{ doc("tbl_SA_AR_TO_SA_PRD_RL_AR_ID") }}'
+      - name: PRD_ID
+        description: '{{ doc("tbl_SA_AR_TO_SA_PRD_RL_PRD_ID") }}'
+      - name: END_DT
+        description: '{{ doc("tbl_SA_AR_TO_SA_PRD_RL_END_DT") }}'
+      - name: SRC_SYS_CD
+        description: '{{ doc("tbl_SA_AR_TO_SA_PRD_RL_SRC_SYS_CD") }}'
+      - name: SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_AR_TO_SA_PRD_RL_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: EFFV_TS
+        description: '{{ doc("tbl_SA_AR_TO_SA_PRD_RL_EFFV_TS") }}'
+      - name: END_TS
+        description: '{{ doc("tbl_SA_AR_TO_SA_PRD_RL_END_TS") }}'
+      - name: TNNT_CD_ID
+        description: '{{ doc("tbl_SA_AR_TO_SA_PRD_RL_TNNT_CD_ID") }}'
+      - name: BTCH_ID
+        description: '{{ doc("tbl_SA_AR_TO_SA_PRD_RL_BTCH_ID") }}'
+      - name: AR_SRC_SYS_CD
+        description: '{{ doc("tbl_SA_AR_TO_SA_PRD_RL_AR_SRC_SYS_CD") }}'
+      - name: AR_SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_AR_TO_SA_PRD_RL_AR_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: PRD_SRC_SYS_CD
+        description: '{{ doc("tbl_SA_AR_TO_SA_PRD_RL_PRD_SRC_SYS_CD") }}'
+      - name: PRD_SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_AR_TO_SA_PRD_RL_PRD_SRC_SYS_UNQ_KEY_TXT") }}'
+  - name: SA_AR_TO_SA_RI_RL
+    description: '{{ doc("tbl_SA_AR_TO_SA_RI_RL") }}'
+    columns:
+      - name: RI_ID
+        description: '{{ doc("tbl_SA_AR_TO_SA_RI_RL_RI_ID") }}'
+      - name: AR_ID
+        description: '{{ doc("tbl_SA_AR_TO_SA_RI_RL_AR_ID") }}'
+      - name: AR_TO_RI_RL_TY_ID
+        description: '{{ doc("tbl_SA_AR_TO_SA_RI_RL_AR_TO_RI_RL_TY_ID") }}'
+      - name: END_DT
+        description: '{{ doc("tbl_SA_AR_TO_SA_RI_RL_END_DT") }}'
+      - name: SRC_SYS_CD
+        description: '{{ doc("tbl_SA_AR_TO_SA_RI_RL_SRC_SYS_CD") }}'
+      - name: SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_AR_TO_SA_RI_RL_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: EFFV_TS
+        description: '{{ doc("tbl_SA_AR_TO_SA_RI_RL_EFFV_TS") }}'
+      - name: END_TS
+        description: '{{ doc("tbl_SA_AR_TO_SA_RI_RL_END_TS") }}'
+      - name: TNNT_CD_ID
+        description: '{{ doc("tbl_SA_AR_TO_SA_RI_RL_TNNT_CD_ID") }}'
+      - name: BTCH_ID
+        description: '{{ doc("tbl_SA_AR_TO_SA_RI_RL_BTCH_ID") }}'
+      - name: AR_SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_AR_TO_SA_RI_RL_AR_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: AR_SRC_SYS_CD
+        description: '{{ doc("tbl_SA_AR_TO_SA_RI_RL_AR_SRC_SYS_CD") }}'
+      - name: RI_SRC_SYS_CD
+        description: '{{ doc("tbl_SA_AR_TO_SA_RI_RL_RI_SRC_SYS_CD") }}'
+      - name: RI_SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_AR_TO_SA_RI_RL_RI_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: EFFV_DT
+        description: '{{ doc("tbl_SA_AR_TO_SA_RI_RL_EFFV_DT") }}'
+  - name: SA_AR
+    description: '{{ doc("tbl_SA_AR") }}'
+    columns:
+      - name: AR_ID
+        description: '{{ doc("tbl_SA_AR_AR_ID") }}'
+      - name: SRC_SYS_CD
+        description: '{{ doc("tbl_SA_AR_SRC_SYS_CD") }}'
+      - name: SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_AR_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: EFFV_TS
+        description: '{{ doc("tbl_SA_AR_EFFV_TS") }}'
+      - name: END_TS
+        description: '{{ doc("tbl_SA_AR_END_TS") }}'
+      - name: TNNT_CD_ID
+        description: '{{ doc("tbl_SA_AR_TNNT_CD_ID") }}'
+      - name: BTCH_ID
+        description: '{{ doc("tbl_SA_AR_BTCH_ID") }}'
+      - name: AR_TY_ID
+        description: '{{ doc("tbl_SA_AR_AR_TY_ID") }}'
+      - name: AR_FREQ_TY_ID
+        description: '{{ doc("tbl_SA_AR_AR_FREQ_TY_ID") }}'
+      - name: AR_PRPS_TY_ID
+        description: '{{ doc("tbl_SA_AR_AR_PRPS_TY_ID") }}'
+      - name: AR_RSN_TY_ID
+        description: '{{ doc("tbl_SA_AR_AR_RSN_TY_ID") }}'
+      - name: AR_PRMY_PMT_METHD_ID
+        description: '{{ doc("tbl_SA_AR_AR_PRMY_PMT_METHD_ID") }}'
+      - name: AR_FNC_STS_TY_ID
+        description: '{{ doc("tbl_SA_AR_AR_FNC_STS_TY_ID") }}'
+      - name: AR_FNC_STS_DT
+        description: '{{ doc("tbl_SA_AR_AR_FNC_STS_DT") }}'
+      - name: AR_LC_STS_DT
+        description: '{{ doc("tbl_SA_AR_AR_LC_STS_DT") }}'
+      - name: AR_LC_STS_TY_ID
+        description: '{{ doc("tbl_SA_AR_AR_LC_STS_TY_ID") }}'
+      - name: AR_PHASE_ID
+        description: '{{ doc("tbl_SA_AR_AR_PHASE_ID") }}'
+      - name: AR_PHASE_DT
+        description: '{{ doc("tbl_SA_AR_AR_PHASE_DT") }}'
+      - name: PRMY_RESP_CNTR_DT
+        description: '{{ doc("tbl_SA_AR_PRMY_RESP_CNTR_DT") }}'
+      - name: PRMY_RESP_CNTR_ID
+        description: '{{ doc("tbl_SA_AR_PRMY_RESP_CNTR_ID") }}'
+      - name: AR_TRM_TY_ID
+        description: '{{ doc("tbl_SA_AR_AR_TRM_TY_ID") }}'
+      - name: ORIG_CHNL_ID
+        description: '{{ doc("tbl_SA_AR_ORIG_CHNL_ID") }}'
+      - name: DNMNTN_CUR_ID
+        description: '{{ doc("tbl_SA_AR_DNMNTN_CUR_ID") }}'
+      - name: NBR_OF_AR_CVRD
+        description: '{{ doc("tbl_SA_AR_NBR_OF_AR_CVRD") }}'
+      - name: INIT_IP_ID
+        description: '{{ doc("tbl_SA_AR_INIT_IP_ID") }}'
+      - name: RPRST_OU_ID
+        description: '{{ doc("tbl_SA_AR_RPRST_OU_ID") }}'
+      - name: ESTMTD_END_DT
+        description: '{{ doc("tbl_SA_AR_ESTMTD_END_DT") }}'
+      - name: EFFV_DT
+        description: '{{ doc("tbl_SA_AR_EFFV_DT") }}'
+      - name: END_DT
+        description: '{{ doc("tbl_SA_AR_END_DT") }}'
+      - name: LST_CUST_ACTVTY_DT
+        description: '{{ doc("tbl_SA_AR_LST_CUST_ACTVTY_DT") }}'
+      - name: LST_PRCDR_DT
+        description: '{{ doc("tbl_SA_AR_LST_PRCDR_DT") }}'
+      - name: LST_TRMS_MOD_DT
+        description: '{{ doc("tbl_SA_AR_LST_TRMS_MOD_DT") }}'
+      - name: NXT_RVW_DT
+        description: '{{ doc("tbl_SA_AR_NXT_RVW_DT") }}'
+      - name: LST_RVW_DT
+        description: '{{ doc("tbl_SA_AR_LST_RVW_DT") }}'
+      - name: RNWL_FLG
+        description: '{{ doc("tbl_SA_AR_RNWL_FLG") }}'
+      - name: NXT_RNWL_DT
+        description: '{{ doc("tbl_SA_AR_NXT_RNWL_DT") }}'
+      - name: AR_NM
+        description: '{{ doc("tbl_SA_AR_AR_NM") }}'
+      - name: DESC
+        description: '{{ doc("tbl_SA_AR_DESC") }}'
+      - name: RI_AR_TY_ID
+        description: '{{ doc("tbl_SA_AR_RI_AR_TY_ID") }}'
+  - name: SA_CL
+    description: '{{ doc("tbl_SA_CL") }}'
+    columns:
+      - name: CL_ID
+        description: '{{ doc("tbl_SA_CL_CL_ID") }}'
+      - name: SRC_SYS_CD
+        description: '{{ doc("tbl_SA_CL_SRC_SYS_CD") }}'
+      - name: SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_CL_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: EFFV_TS
+        description: '{{ doc("tbl_SA_CL_EFFV_TS") }}'
+      - name: END_TS
+        description: '{{ doc("tbl_SA_CL_END_TS") }}'
+      - name: TNNT_CD_ID
+        description: '{{ doc("tbl_SA_CL_TNNT_CD_ID") }}'
+      - name: BTCH_ID
+        description: '{{ doc("tbl_SA_CL_BTCH_ID") }}'
+      - name: EFFV_DT
+        description: '{{ doc("tbl_SA_CL_EFFV_DT") }}'
+      - name: END_DT
+        description: '{{ doc("tbl_SA_CL_END_DT") }}'
+      - name: NMRC_CD_FLG
+        description: '{{ doc("tbl_SA_CL_NMRC_CD_FLG") }}'
+      - name: CD_LEN
+        description: '{{ doc("tbl_SA_CL_CD_LEN") }}'
+      - name: SCHM_CD
+        description: '{{ doc("tbl_SA_CL_SCHM_CD") }}'
+      - name: CL_SCHM_NM
+        description: '{{ doc("tbl_SA_CL_CL_SCHM_NM") }}'
+      - name: CL_SCHM_LONG_NM
+        description: '{{ doc("tbl_SA_CL_CL_SCHM_LONG_NM") }}'
+      - name: CL_CD
+        description: '{{ doc("tbl_SA_CL_CL_CD") }}'
+      - name: CL_SHRT_NM
+        description: '{{ doc("tbl_SA_CL_CL_SHRT_NM") }}'
+      - name: CL_NM
+        description: '{{ doc("tbl_SA_CL_CL_NM") }}'
+      - name: CL_DESC
+        description: '{{ doc("tbl_SA_CL_CL_DESC") }}'
+  - name: SA_CPGN_SEG_DLV
+    description: '{{ doc("tbl_SA_CPGN_SEG_DLV") }}'
+    columns:
+      - name: MSEG_GRP_ID
+        description: '{{ doc("tbl_SA_CPGN_SEG_DLV_MSEG_GRP_ID") }}'
+      - name: SCENR_ID
+        description: '{{ doc("tbl_SA_CPGN_SEG_DLV_SCENR_ID") }}'
+      - name: CPGN_ID
+        description: '{{ doc("tbl_SA_CPGN_SEG_DLV_CPGN_ID") }}'
+      - name: CPGN_DLV_NBR
+        description: '{{ doc("tbl_SA_CPGN_SEG_DLV_CPGN_DLV_NBR") }}'
+      - name: SRC_SYS_CD
+        description: '{{ doc("tbl_SA_CPGN_SEG_DLV_SRC_SYS_CD") }}'
+      - name: SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_CPGN_SEG_DLV_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: EFFV_TS
+        description: '{{ doc("tbl_SA_CPGN_SEG_DLV_EFFV_TS") }}'
+      - name: END_TS
+        description: '{{ doc("tbl_SA_CPGN_SEG_DLV_END_TS") }}'
+      - name: TNNT_CD_ID
+        description: '{{ doc("tbl_SA_CPGN_SEG_DLV_TNNT_CD_ID") }}'
+      - name: BTCH_ID
+        description: '{{ doc("tbl_SA_CPGN_SEG_DLV_BTCH_ID") }}'
+      - name: NBR_OF_SEG_CPGN_CMM
+        description: '{{ doc("tbl_SA_CPGN_SEG_DLV_NBR_OF_SEG_CPGN_CMM") }}'
+      - name: SEG_ACTVTY_LC_STS_TY_ID
+        description: '{{ doc("tbl_SA_CPGN_SEG_DLV_SEG_ACTVTY_LC_STS_TY_ID") }}'
+      - name: SEG_ACTVTY_LC_STS_RSN_TY_ID
+        description: '{{ doc("tbl_SA_CPGN_SEG_DLV_SEG_ACTVTY_LC_STS_RSN_TY_ID") }}'
+      - name: SEG_DLV_AMT_UOM_ID
+        description: '{{ doc("tbl_SA_CPGN_SEG_DLV_SEG_DLV_AMT_UOM_ID") }}'
+      - name: SEG_DLV_AMT
+        description: '{{ doc("tbl_SA_CPGN_SEG_DLV_SEG_DLV_AMT") }}'
+      - name: MAXM_TRG_NBR
+        description: '{{ doc("tbl_SA_CPGN_SEG_DLV_MAXM_TRG_NBR") }}'
+      - name: EXPCT_STRT_DT
+        description: '{{ doc("tbl_SA_CPGN_SEG_DLV_EXPCT_STRT_DT") }}'
+      - name: EXPCT_END_DT
+        description: '{{ doc("tbl_SA_CPGN_SEG_DLV_EXPCT_END_DT") }}'
+      - name: ACTL_STRT_DT
+        description: '{{ doc("tbl_SA_CPGN_SEG_DLV_ACTL_STRT_DT") }}'
+      - name: ACTL_END_DT
+        description: '{{ doc("tbl_SA_CPGN_SEG_DLV_ACTL_END_DT") }}'
+      - name: RSLT_END_DT
+        description: '{{ doc("tbl_SA_CPGN_SEG_DLV_RSLT_END_DT") }}'
+      - name: CPGN_SEG_ACTVTY_NM
+        description: '{{ doc("tbl_SA_CPGN_SEG_DLV_CPGN_SEG_ACTVTY_NM") }}'
+      - name: SEG_COST_AMT
+        description: '{{ doc("tbl_SA_CPGN_SEG_DLV_SEG_COST_AMT") }}'
+      - name: DESC
+        description: '{{ doc("tbl_SA_CPGN_SEG_DLV_DESC") }}'
+      - name: CPGN_DLV_TY_ID
+        description: '{{ doc("tbl_SA_CPGN_SEG_DLV_CPGN_DLV_TY_ID") }}'
+      - name: DLV_AMT_UOM_ID
+        description: '{{ doc("tbl_SA_CPGN_SEG_DLV_DLV_AMT_UOM_ID") }}'
+      - name: DLV_AMT
+        description: '{{ doc("tbl_SA_CPGN_SEG_DLV_DLV_AMT") }}'
+      - name: EFFV_DT
+        description: '{{ doc("tbl_SA_CPGN_SEG_DLV_EFFV_DT") }}'
+      - name: END_DT
+        description: '{{ doc("tbl_SA_CPGN_SEG_DLV_END_DT") }}'
+  - name: SA_EV_CMM
+    description: '{{ doc("tbl_SA_EV_CMM") }}'
+    columns:
+      - name: EV_CMM_ID
+        description: '{{ doc("tbl_SA_EV_CMM_EV_CMM_ID") }}'
+        tests:
+          - unique
+          - not_null
+      - name: SRC_SYS_CD
+        description: '{{ doc("tbl_SA_EV_CMM_SRC_SYS_CD") }}'
+      - name: SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_EV_CMM_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: EFFV_TS
+        description: '{{ doc("tbl_SA_EV_CMM_EFFV_TS") }}'
+      - name: END_TS
+        description: '{{ doc("tbl_SA_EV_CMM_END_TS") }}'
+      - name: TNNT_CD_ID
+        description: '{{ doc("tbl_SA_EV_CMM_TNNT_CD_ID") }}'
+      - name: BTCH_ID
+        description: '{{ doc("tbl_SA_EV_CMM_BTCH_ID") }}'
+      - name: EV_TY_ID
+        description: '{{ doc("tbl_SA_EV_CMM_EV_TY_ID") }}'
+      - name: EV_LC_STS_TY_DT
+        description: '{{ doc("tbl_SA_EV_CMM_EV_LC_STS_TY_DT") }}'
+      - name: EV_LC_STS_TY_ID
+        description: '{{ doc("tbl_SA_EV_CMM_EV_LC_STS_TY_ID") }}'
+      - name: EV_LC_STS_RSN_TY_ID
+        description: '{{ doc("tbl_SA_EV_CMM_EV_LC_STS_RSN_TY_ID") }}'
+      - name: EV_ORGNTN_TY_ID
+        description: '{{ doc("tbl_SA_EV_CMM_EV_ORGNTN_TY_ID") }}'
+      - name: PRBLTY_OF_OCCUR_CGY_ID
+        description: '{{ doc("tbl_SA_EV_CMM_PRBLTY_OF_OCCUR_CGY_ID") }}'
+      - name: EV_SRC_ID
+        description: '{{ doc("tbl_SA_EV_CMM_EV_SRC_ID") }}'
+      - name: EV_CNTCT_MDM_TY_ID
+        description: '{{ doc("tbl_SA_EV_CMM_EV_CNTCT_MDM_TY_ID") }}'
+      - name: SUSPCS_FLG
+        description: '{{ doc("tbl_SA_EV_CMM_SUSPCS_FLG") }}'
+      - name: PRTY_RTNG_ID
+        description: '{{ doc("tbl_SA_EV_CMM_PRTY_RTNG_ID") }}'
+      - name: AUTHRZTN_CD
+        description: '{{ doc("tbl_SA_EV_CMM_AUTHRZTN_CD") }}'
+      - name: AUTHRZTN_DT
+        description: '{{ doc("tbl_SA_EV_CMM_AUTHRZTN_DT") }}'
+      - name: EV_PRPS_TY_ID
+        description: '{{ doc("tbl_SA_EV_CMM_EV_PRPS_TY_ID") }}'
+        tests:
+          - not_null
+      - name: EV_EXCTN_MODE_ID
+        description: '{{ doc("tbl_SA_EV_CMM_EV_EXCTN_MODE_ID") }}'
+      - name: CMM_TY_ID
+        description: '{{ doc("tbl_SA_EV_CMM_CMM_TY_ID") }}'
+      - name: ACTN_CMPLT_FLG
+        description: '{{ doc("tbl_SA_EV_CMM_ACTN_CMPLT_FLG") }}'
+      - name: THRD_PRTCPT_STS
+        description: '{{ doc("tbl_SA_EV_CMM_THRD_PRTCPT_STS") }}'
+      - name: CMM_PRCSNG_TM
+        description: '{{ doc("tbl_SA_EV_CMM_CMM_PRCSNG_TM") }}'
+      - name: CMM_CNTCT_STS_ID
+        description: '{{ doc("tbl_SA_EV_CMM_CMM_CNTCT_STS_ID") }}'
+        tests:
+          - not_null
+      - name: CMM_CNTCT_STS_DT
+        description: '{{ doc("tbl_SA_EV_CMM_CMM_CNTCT_STS_DT") }}'
+      - name: CMM_DRCTN_ID
+        description: '{{ doc("tbl_SA_EV_CMM_CMM_DRCTN_ID") }}'
+      - name: CMM_FORM_ID
+        description: '{{ doc("tbl_SA_EV_CMM_CMM_FORM_ID") }}'
+      - name: CMM_RSN_TY_ID
+        description: '{{ doc("tbl_SA_EV_CMM_CMM_RSN_TY_ID") }}'
+      - name: CMM_RSPN_TY_ID
+        description: '{{ doc("tbl_SA_EV_CMM_CMM_RSPN_TY_ID") }}'
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Yes', 'No']
+      - name: CHNL_ID
+        description: '{{ doc("tbl_SA_EV_CMM_CHNL_ID") }}'
+        tests:
+          - not_null
+      - name: LANG_ID
+        description: '{{ doc("tbl_SA_EV_CMM_LANG_ID") }}'
+      - name: PRD_ID
+        description: '{{ doc("tbl_SA_EV_CMM_PRD_ID") }}'
+        tests:
+          - not_null
+      - name: INIT_IP_ID
+        description: '{{ doc("tbl_SA_EV_CMM_INIT_IP_ID") }}'
+        tests:
+          - not_null
+      - name: INIT_TM
+        description: '{{ doc("tbl_SA_EV_CMM_INIT_TM") }}'
+      - name: INIT_DT
+        description: '{{ doc("tbl_SA_EV_CMM_INIT_DT") }}'
+      - name: RCPNT_IP_ID
+        description: '{{ doc("tbl_SA_EV_CMM_RCPNT_IP_ID") }}'
+      - name: RSPN_TM_IN_DYS
+        description: '{{ doc("tbl_SA_EV_CMM_RSPN_TM_IN_DYS") }}'
+      - name: CMM_DCOST
+        description: '{{ doc("tbl_SA_EV_CMM_CMM_DCOST") }}'
+      - name: CMM_ICOST
+        description: '{{ doc("tbl_SA_EV_CMM_CMM_ICOST") }}'
+      - name: CMM_FEE
+        description: '{{ doc("tbl_SA_EV_CMM_CMM_FEE") }}'
+      - name: CMM_DT
+        description: '{{ doc("tbl_SA_EV_CMM_CMM_DT") }}'
+      - name: CMM_EFFV_DT
+        description: '{{ doc("tbl_SA_EV_CMM_CMM_EFFV_DT") }}'
+      - name: RECVD_DT
+        description: '{{ doc("tbl_SA_EV_CMM_RECVD_DT") }}'
+        tests:
+          - not_null
+          - valid_date
+      - name: RECVD_TM
+        description: '{{ doc("tbl_SA_EV_CMM_RECVD_TM") }}'
+      - name: RSPN_TM
+        description: '{{ doc("tbl_SA_EV_CMM_RSPN_TM") }}'
+      - name: RSPN_DT
+        description: '{{ doc("tbl_SA_EV_CMM_RSPN_DT") }}'
+        tests:
+          - not_null
+          - valid_date
+      - name: XPRTN_DT
+        description: '{{ doc("tbl_SA_EV_CMM_XPRTN_DT") }}'
+      - name: CMM_DELY_RSN_TY_ID
+        description: '{{ doc("tbl_SA_EV_CMM_CMM_DELY_RSN_TY_ID") }}'
+      - name: CMM_THRD_ID
+        description: '{{ doc("tbl_SA_EV_CMM_CMM_THRD_ID") }}'
+      - name: PREP_TM_FOR_CMM
+        description: '{{ doc("tbl_SA_EV_CMM_PREP_TM_FOR_CMM") }}'
+      - name: CMM_OHOLD_TM
+        description: '{{ doc("tbl_SA_EV_CMM_CMM_OHOLD_TM") }}'
+      - name: CMM_SNTM_TY_ID
+        description: '{{ doc("tbl_SA_EV_CMM_CMM_SNTM_TY_ID") }}'
+      - name: EV_CPGN_ID
+        description: '{{ doc("tbl_SA_EV_CMM_EV_CPGN_ID") }}'
+        tests:
+          - unique
+          - not_null
+      - name: CMPNAVY_NBR
+        description: '{{ doc("tbl_SA_EV_CMM_CMPNAVY_NBR") }}'
+      - name: MSEG_GRP_ID
+        description: '{{ doc("tbl_SA_EV_CMM_MSEG_GRP_ID") }}'
+      - name: CMPNAVY_SCENR_ID
+        description: '{{ doc("tbl_SA_EV_CMM_CMPNAVY_SCENR_ID") }}'
+      - name: CPGN_CMM_EFFV_DT
+        description: '{{ doc("tbl_SA_EV_CMM_CPGN_CMM_EFFV_DT") }}'
+      - name: CPGN_CMM_END_DT
+        description: '{{ doc("tbl_SA_EV_CMM_CPGN_CMM_END_DT") }}'
+      - name: CNTCT_SEL_DT
+        description: '{{ doc("tbl_SA_EV_CMM_CNTCT_SEL_DT") }}'
+      - name: RMDR_DT
+        description: '{{ doc("tbl_SA_EV_CMM_RMDR_DT") }}'
+      - name: NXT_STEP_DT
+        description: '{{ doc("tbl_SA_EV_CMM_NXT_STEP_DT") }}'
+      - name: SCL_MEDA_POST_TY_ID
+        description: '{{ doc("tbl_SA_EV_CMM_SCL_MEDA_POST_TY_ID") }}'
+      - name: POST_TXT
+        description: '{{ doc("tbl_SA_EV_CMM_POST_TXT") }}'
+      - name: POST_DT
+        description: '{{ doc("tbl_SA_EV_CMM_POST_DT") }}'
+      - name: NBR_OF_CMNT
+        description: '{{ doc("tbl_SA_EV_CMM_NBR_OF_CMNT") }}'
+      - name: NBR_OF_PSTV_RTG
+        description: '{{ doc("tbl_SA_EV_CMM_NBR_OF_PSTV_RTG") }}'
+      - name: NBR_OF_NEG_RTG
+        description: '{{ doc("tbl_SA_EV_CMM_NBR_OF_NEG_RTG") }}'
+      - name: SCL_MEDA_PSNA_ID
+        description: '{{ doc("tbl_SA_EV_CMM_SCL_MEDA_PSNA_ID") }}'
+      - name: SCL_MEDA_WEBSITE_ID
+        description: '{{ doc("tbl_SA_EV_CMM_SCL_MEDA_WEBSITE_ID") }}'
+  - name: SA_EV_CPGN
+    description: '{{ doc("tbl_SA_EV_CPGN") }}'
+    columns:
+      - name: EV_CPGN_ID
+        description: '{{ doc("tbl_SA_EV_CPGN_EV_CPGN_ID") }}'
+        tests:
+          - unique
+          - not_null
+      - name: EV_TY_ID
+        description: '{{ doc("tbl_SA_EV_CPGN_EV_TY_ID") }}'
+      - name: EV_LC_STS_TY_ID
+        description: '{{ doc("tbl_SA_EV_CPGN_EV_LC_STS_TY_ID") }}'
+      - name: EV_LC_STS_RSN_TY_ID
+        description: '{{ doc("tbl_SA_EV_CPGN_EV_LC_STS_RSN_TY_ID") }}'
+      - name: EV_LC_STS_TY_DT
+        description: '{{ doc("tbl_SA_EV_CPGN_EV_LC_STS_TY_DT") }}'
+      - name: EV_ORGNTN_TY_ID
+        description: '{{ doc("tbl_SA_EV_CPGN_EV_ORGNTN_TY_ID") }}'
+      - name: EV_SRC_ID
+        description: '{{ doc("tbl_SA_EV_CPGN_EV_SRC_ID") }}'
+      - name: EV_CNTCT_MDM_TY_ID
+        description: '{{ doc("tbl_SA_EV_CPGN_EV_CNTCT_MDM_TY_ID") }}'
+      - name: PRTY_RTNG_ID
+        description: '{{ doc("tbl_SA_EV_CPGN_PRTY_RTNG_ID") }}'
+        tests:
+          - not_null
+          - valid_number_range:
+              from: 1
+              to: 5 
+      - name: AUTHRZTN_CD
+        description: '{{ doc("tbl_SA_EV_CPGN_AUTHRZTN_CD") }}'
+      - name: AUTHRZTN_DT
+        description: '{{ doc("tbl_SA_EV_CPGN_AUTHRZTN_DT") }}'
+      - name: EV_PRPS_TY_ID
+        description: '{{ doc("tbl_SA_EV_CPGN_EV_PRPS_TY_ID") }}'
+      - name: EV_EXCTN_MODE_ID
+        description: '{{ doc("tbl_SA_EV_CPGN_EV_EXCTN_MODE_ID") }}'
+      - name: CPGN_TY_ID
+        description: '{{ doc("tbl_SA_EV_CPGN_CPGN_TY_ID") }}'
+      - name: CPGN_LC_STS_RSN_TY_ID
+        description: '{{ doc("tbl_SA_EV_CPGN_CPGN_LC_STS_RSN_TY_ID") }}'
+      - name: CPGN_TRGR_TY_ID
+        description: '{{ doc("tbl_SA_EV_CPGN_CPGN_TRGR_TY_ID") }}'
+      - name: EXPCT_STRT_DT
+        description: '{{ doc("tbl_SA_EV_CPGN_EXPCT_STRT_DT") }}'
+      - name: ACTL_STRT_DT
+        description: '{{ doc("tbl_SA_EV_CPGN_ACTL_STRT_DT") }}'
+        tests:
+          - not_null
+          - valid_date
+      - name: EXPCT_END_DT
+        description: '{{ doc("tbl_SA_EV_CPGN_EXPCT_END_DT") }}'
+      - name: DESC
+        description: '{{ doc("tbl_SA_EV_CPGN_DESC") }}'
+      - name: ACTL_END_DT
+        description: '{{ doc("tbl_SA_EV_CPGN_ACTL_END_DT") }}'
+      - name: CPGN_NM
+        description: '{{ doc("tbl_SA_EV_CPGN_CPGN_NM") }}'
+      - name: CPGN_CD
+        description: '{{ doc("tbl_SA_EV_CPGN_CPGN_CD") }}'
+      - name: PRD_ID
+        description: '{{ doc("tbl_SA_EV_CPGN_PRD_ID") }}'
+        tests:
+          - not_null
+  - name: SA_EV_TO_SA_GRP_RL
+    description: '{{ doc("tbl_SA_EV_TO_SA_GRP_RL") }}'
+    columns:
+      - name: EV_ID
+        description: '{{ doc("tbl_SA_EV_TO_SA_GRP_RL_EV_ID") }}'
+      - name: GRP_ID
+        description: '{{ doc("tbl_SA_EV_TO_SA_GRP_RL_GRP_ID") }}'
+      - name: EV_TO_GRP_RL_TY_ID
+        description: '{{ doc("tbl_SA_EV_TO_SA_GRP_RL_EV_TO_GRP_RL_TY_ID") }}'
+      - name: EFFV_DT
+        description: '{{ doc("tbl_SA_EV_TO_SA_GRP_RL_EFFV_DT") }}'
+      - name: END_DT
+        description: '{{ doc("tbl_SA_EV_TO_SA_GRP_RL_END_DT") }}'
+      - name: SRC_SYS_CD
+        description: '{{ doc("tbl_SA_EV_TO_SA_GRP_RL_SRC_SYS_CD") }}'
+      - name: SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_EV_TO_SA_GRP_RL_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: EFFV_TS
+        description: '{{ doc("tbl_SA_EV_TO_SA_GRP_RL_EFFV_TS") }}'
+      - name: END_TS
+        description: '{{ doc("tbl_SA_EV_TO_SA_GRP_RL_END_TS") }}'
+      - name: TNNT_CD_ID
+        description: '{{ doc("tbl_SA_EV_TO_SA_GRP_RL_TNNT_CD_ID") }}'
+      - name: BTCH_ID
+        description: '{{ doc("tbl_SA_EV_TO_SA_GRP_RL_BTCH_ID") }}'
+      - name: EV_SRC_SYS_CD
+        description: '{{ doc("tbl_SA_EV_TO_SA_GRP_RL_EV_SRC_SYS_CD") }}'
+      - name: EV_SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_EV_TO_SA_GRP_RL_EV_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: GRP_IP_SRC_SYS_CD
+        description: '{{ doc("tbl_SA_EV_TO_SA_GRP_RL_GRP_IP_SRC_SYS_CD") }}'
+      - name: GRP_IP_SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_EV_TO_SA_GRP_RL_GRP_IP_SRC_SYS_UNQ_KEY_TXT") }}'
+  - name: SA_GRP
+    description: '{{ doc("tbl_SA_GRP") }}'
+    columns:
+      - name: GRP_ID
+        description: '{{ doc("tbl_SA_GRP_GRP_ID") }}'
+      - name: SRC_SYS_CD
+        description: '{{ doc("tbl_SA_GRP_SRC_SYS_CD") }}'
+      - name: SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_GRP_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: EFFV_TS
+        description: '{{ doc("tbl_SA_GRP_EFFV_TS") }}'
+      - name: END_TS
+        description: '{{ doc("tbl_SA_GRP_END_TS") }}'
+      - name: TNNT_CD_ID
+        description: '{{ doc("tbl_SA_GRP_TNNT_CD_ID") }}'
+      - name: BTCH_ID
+        description: '{{ doc("tbl_SA_GRP_BTCH_ID") }}'
+      - name: GRP_TY_ID
+        description: '{{ doc("tbl_SA_GRP_GRP_TY_ID") }}'
+      - name: EFFV_DT
+        description: '{{ doc("tbl_SA_GRP_EFFV_DT") }}'
+      - name: END_DT
+        description: '{{ doc("tbl_SA_GRP_END_DT") }}'
+      - name: GRP_CD
+        description: '{{ doc("tbl_SA_GRP_GRP_CD") }}'
+      - name: GRP_NM
+        description: '{{ doc("tbl_SA_GRP_GRP_NM") }}'
+      - name: GRP_TXT
+        description: '{{ doc("tbl_SA_GRP_GRP_TXT") }}'
+      - name: DESC
+        description: '{{ doc("tbl_SA_GRP_DESC") }}'
+      - name: IP_GRP_TY_ID
+        description: '{{ doc("tbl_SA_GRP_IP_GRP_TY_ID") }}'
+      - name: RESP_CNTR_TY_ID
+        description: '{{ doc("tbl_SA_GRP_RESP_CNTR_TY_ID") }}'
+      - name: LO_GRP_TY_ID
+        description: '{{ doc("tbl_SA_GRP_LO_GRP_TY_ID") }}'
+      - name: FNC_MRKT_TY_ID
+        description: '{{ doc("tbl_SA_GRP_FNC_MRKT_TY_ID") }}'
+      - name: PRD_GRP_TY_ID
+        description: '{{ doc("tbl_SA_GRP_PRD_GRP_TY_ID") }}'
+  - name: SA_IP_ALT_IDFN
+    description: '{{ doc("tbl_SA_IP_ALT_IDFN") }}'
+    columns:
+      - name: EFFV_DT
+        description: '{{ doc("tbl_SA_IP_ALT_IDFN_EFFV_DT") }}'
+      - name: IP_ID
+        description: '{{ doc("tbl_SA_IP_ALT_IDFN_IP_ID") }}'
+      - name: IP_IDFN_TY_ID
+        description: '{{ doc("tbl_SA_IP_ALT_IDFN_IP_IDFN_TY_ID") }}'
+      - name: END_DT
+        description: '{{ doc("tbl_SA_IP_ALT_IDFN_END_DT") }}'
+      - name: SRC_SYS_CD
+        description: '{{ doc("tbl_SA_IP_ALT_IDFN_SRC_SYS_CD") }}'
+      - name: SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_IP_ALT_IDFN_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: EFFV_TS
+        description: '{{ doc("tbl_SA_IP_ALT_IDFN_EFFV_TS") }}'
+      - name: END_TS
+        description: '{{ doc("tbl_SA_IP_ALT_IDFN_END_TS") }}'
+      - name: TNNT_CD_ID
+        description: '{{ doc("tbl_SA_IP_ALT_IDFN_TNNT_CD_ID") }}'
+      - name: BTCH_ID
+        description: '{{ doc("tbl_SA_IP_ALT_IDFN_BTCH_ID") }}'
+      - name: IP_SRC_SYS_CD
+        description: '{{ doc("tbl_SA_IP_ALT_IDFN_IP_SRC_SYS_CD") }}'
+      - name: IP_SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_IP_ALT_IDFN_IP_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: IDFN_NBR_TXT
+        description: '{{ doc("tbl_SA_IP_ALT_IDFN_IDFN_NBR_TXT") }}'
+  - name: SA_IP_TO_SA_EV_RL
+    description: '{{ doc("tbl_SA_IP_TO_SA_EV_RL") }}'
+    columns:
+      - name: IP_ID
+        description: '{{ doc("tbl_SA_IP_TO_SA_EV_RL_IP_ID") }}'
+      - name: IP_TO_EV_RL_TY_ID
+        description: '{{ doc("tbl_SA_IP_TO_SA_EV_RL_IP_TO_EV_RL_TY_ID") }}'
+      - name: EFFV_DT
+        description: '{{ doc("tbl_SA_IP_TO_SA_EV_RL_EFFV_DT") }}'
+      - name: EV_ID
+        description: '{{ doc("tbl_SA_IP_TO_SA_EV_RL_EV_ID") }}'
+      - name: END_DT
+        description: '{{ doc("tbl_SA_IP_TO_SA_EV_RL_END_DT") }}'
+      - name: SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_IP_TO_SA_EV_RL_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: SRC_SYS_CD
+        description: '{{ doc("tbl_SA_IP_TO_SA_EV_RL_SRC_SYS_CD") }}'
+      - name: END_TS
+        description: '{{ doc("tbl_SA_IP_TO_SA_EV_RL_END_TS") }}'
+      - name: EFFV_TS
+        description: '{{ doc("tbl_SA_IP_TO_SA_EV_RL_EFFV_TS") }}'
+      - name: TNNT_CD_ID
+        description: '{{ doc("tbl_SA_IP_TO_SA_EV_RL_TNNT_CD_ID") }}'
+      - name: BTCH_ID
+        description: '{{ doc("tbl_SA_IP_TO_SA_EV_RL_BTCH_ID") }}'
+      - name: IP_SRC_SYS_CD
+        description: '{{ doc("tbl_SA_IP_TO_SA_EV_RL_IP_SRC_SYS_CD") }}'
+      - name: IP_SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_IP_TO_SA_EV_RL_IP_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: EV_IP_SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_IP_TO_SA_EV_RL_EV_IP_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: EV_IP_SRC_SYS_CD
+        description: '{{ doc("tbl_SA_IP_TO_SA_EV_RL_EV_IP_SRC_SYS_CD") }}'
+  - name: SA_IP_TO_SA_GRP_RL
+    description: '{{ doc("tbl_SA_IP_TO_SA_GRP_RL") }}'
+    columns:
+      - name: EFFV_DT
+        description: '{{ doc("tbl_SA_IP_TO_SA_GRP_RL_EFFV_DT") }}'
+      - name: IP_TO_GRP_RL_TY_ID
+        description: '{{ doc("tbl_SA_IP_TO_SA_GRP_RL_IP_TO_GRP_RL_TY_ID") }}'
+      - name: GRP_ID
+        description: '{{ doc("tbl_SA_IP_TO_SA_GRP_RL_GRP_ID") }}'
+      - name: IP_ID
+        description: '{{ doc("tbl_SA_IP_TO_SA_GRP_RL_IP_ID") }}'
+      - name: END_DT
+        description: '{{ doc("tbl_SA_IP_TO_SA_GRP_RL_END_DT") }}'
+      - name: SRC_SYS_CD
+        description: '{{ doc("tbl_SA_IP_TO_SA_GRP_RL_SRC_SYS_CD") }}'
+      - name: SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_IP_TO_SA_GRP_RL_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: EFFV_TS
+        description: '{{ doc("tbl_SA_IP_TO_SA_GRP_RL_EFFV_TS") }}'
+      - name: END_TS
+        description: '{{ doc("tbl_SA_IP_TO_SA_GRP_RL_END_TS") }}'
+      - name: TNNT_CD_ID
+        description: '{{ doc("tbl_SA_IP_TO_SA_GRP_RL_TNNT_CD_ID") }}'
+      - name: BTCH_ID
+        description: '{{ doc("tbl_SA_IP_TO_SA_GRP_RL_BTCH_ID") }}'
+      - name: GRP_IP_SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_IP_TO_SA_GRP_RL_GRP_IP_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: GRP_IP_SRC_SYS_CD
+        description: '{{ doc("tbl_SA_IP_TO_SA_GRP_RL_GRP_IP_SRC_SYS_CD") }}'
+      - name: IP_SRC_SYS_CD
+        description: '{{ doc("tbl_SA_IP_TO_SA_GRP_RL_IP_SRC_SYS_CD") }}'
+      - name: IP_SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_IP_TO_SA_GRP_RL_IP_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: PRFRD_CNTCT_DY
+        description: '{{ doc("tbl_SA_IP_TO_SA_GRP_RL_PRFRD_CNTCT_DY") }}'
+      - name: SOLCT_FLG
+        description: '{{ doc("tbl_SA_IP_TO_SA_GRP_RL_SOLCT_FLG") }}'
+  - name: SA_IP_TO_SA_IP_RL
+    description: '{{ doc("tbl_SA_IP_TO_SA_IP_RL") }}'
+    columns:
+      - name: EFFV_DT
+        description: '{{ doc("tbl_SA_IP_TO_SA_IP_RL_EFFV_DT") }}'
+      - name: OBJ_IP_ID
+        description: '{{ doc("tbl_SA_IP_TO_SA_IP_RL_OBJ_IP_ID") }}'
+      - name: IP_TO_IP_RL_TY_ID
+        description: '{{ doc("tbl_SA_IP_TO_SA_IP_RL_IP_TO_IP_RL_TY_ID") }}'
+      - name: SUBJT_IP_ID
+        description: '{{ doc("tbl_SA_IP_TO_SA_IP_RL_SUBJT_IP_ID") }}'
+      - name: END_DT
+        description: '{{ doc("tbl_SA_IP_TO_SA_IP_RL_END_DT") }}'
+      - name: SRC_SYS_CD
+        description: '{{ doc("tbl_SA_IP_TO_SA_IP_RL_SRC_SYS_CD") }}'
+      - name: SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_IP_TO_SA_IP_RL_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: EFFV_TS
+        description: '{{ doc("tbl_SA_IP_TO_SA_IP_RL_EFFV_TS") }}'
+      - name: END_TS
+        description: '{{ doc("tbl_SA_IP_TO_SA_IP_RL_END_TS") }}'
+      - name: TNNT_CD_ID
+        description: '{{ doc("tbl_SA_IP_TO_SA_IP_RL_TNNT_CD_ID") }}'
+      - name: BTCH_ID
+        description: '{{ doc("tbl_SA_IP_TO_SA_IP_RL_BTCH_ID") }}'
+      - name: SUBJT_IP_SRC_SYS_CD
+        description: '{{ doc("tbl_SA_IP_TO_SA_IP_RL_SUBJT_IP_SRC_SYS_CD") }}'
+      - name: SUBJT_IP_SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_IP_TO_SA_IP_RL_SUBJT_IP_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: OBJ_IP_SRC_SYS_CD
+        description: '{{ doc("tbl_SA_IP_TO_SA_IP_RL_OBJ_IP_SRC_SYS_CD") }}'
+      - name: OBJ_IP_SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_IP_TO_SA_IP_RL_OBJ_IP_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: DESC
+        description: '{{ doc("tbl_SA_IP_TO_SA_IP_RL_DESC") }}'
+      - name: IP_X_IP_RL_LC_STS_RSN_TY_ID
+        description: '{{ doc("tbl_SA_IP_TO_SA_IP_RL_IP_X_IP_RL_LC_STS_RSN_TY_ID") }}'
+      - name: RL_LC_STS_DT
+        description: '{{ doc("tbl_SA_IP_TO_SA_IP_RL_RL_LC_STS_DT") }}'
+      - name: PCT_AMT
+        description: '{{ doc("tbl_SA_IP_TO_SA_IP_RL_PCT_AMT") }}'
+      - name: IP_X_IP_RL_LC_STS_TY_ID
+        description: '{{ doc("tbl_SA_IP_TO_SA_IP_RL_IP_X_IP_RL_LC_STS_TY_ID") }}'
+  - name: SA_PRD
+    description: '{{ doc("tbl_SA_PRD") }}'
+    columns:
+      - name: PRD_ID
+        description: '{{ doc("tbl_SA_PRD_PRD_ID") }}'
+        tests:
+          - unique
+          - not_null
+      - name: SRC_SYS_CD
+        description: '{{ doc("tbl_SA_PRD_SRC_SYS_CD") }}'
+      - name: SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_PRD_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: EFFV_TS
+        description: '{{ doc("tbl_SA_PRD_EFFV_TS") }}'
+      - name: END_TS
+        description: '{{ doc("tbl_SA_PRD_END_TS") }}'
+      - name: TNNT_CD_ID
+        description: '{{ doc("tbl_SA_PRD_TNNT_CD_ID") }}'
+      - name: BTCH_ID
+        description: '{{ doc("tbl_SA_PRD_BTCH_ID") }}'
+      - name: PRD_TY_ID
+        description: '{{ doc("tbl_SA_PRD_PRD_TY_ID") }}'
+      - name: PRD_CD
+        description: '{{ doc("tbl_SA_PRD_PRD_CD") }}'
+      - name: PRD_NM
+        description: '{{ doc("tbl_SA_PRD_PRD_NM") }}'
+        tests:
+          - not_null
+      - name: END_DT
+        description: '{{ doc("tbl_SA_PRD_END_DT") }}'
+      - name: EFFV_DT
+        description: '{{ doc("tbl_SA_PRD_EFFV_DT") }}'
+      - name: DESC
+        description: '{{ doc("tbl_SA_PRD_DESC") }}'
+      - name: PRD_USBLTY_TY_ID
+        description: '{{ doc("tbl_SA_PRD_PRD_USBLTY_TY_ID") }}'
+      - name: PRD_ACCSBLTY_TY_ID
+        description: '{{ doc("tbl_SA_PRD_PRD_ACCSBLTY_TY_ID") }}'
+      - name: PRD_DLVRY_TBND_ID
+        description: '{{ doc("tbl_SA_PRD_PRD_DLVRY_TBND_ID") }}'
+      - name: PRD_COST_SEG_ID
+        description: '{{ doc("tbl_SA_PRD_PRD_COST_SEG_ID") }}'
+      - name: CUST_MSEG_ID
+        description: '{{ doc("tbl_SA_PRD_CUST_MSEG_ID") }}'
+      - name: PRD_PMT_VARBLTY_TY_ID
+        description: '{{ doc("tbl_SA_PRD_PRD_PMT_VARBLTY_TY_ID") }}'
+      - name: PRD_LC_STS_TY_ID
+        description: '{{ doc("tbl_SA_PRD_PRD_LC_STS_TY_ID") }}'
+      - name: PRD_LC_STS_TY_DT
+        description: '{{ doc("tbl_SA_PRD_PRD_LC_STS_TY_DT") }}'
+      - name: PRD_PROFT_SEG_ID
+        description: '{{ doc("tbl_SA_PRD_PRD_PROFT_SEG_ID") }}'
+      - name: PRD_PROFT_SEG_DT
+        description: '{{ doc("tbl_SA_PRD_PRD_PROFT_SEG_DT") }}'
+      - name: PARNT_PRD_ID
+        description: '{{ doc("tbl_SA_PRD_PARNT_PRD_ID") }}'
+      - name: CUST_AC_RQD_FLG
+        description: '{{ doc("tbl_SA_PRD_CUST_AC_RQD_FLG") }}'
+      - name: SCR_RQD_FLG
+        description: '{{ doc("tbl_SA_PRD_SCR_RQD_FLG") }}'
+      - name: TAX_ADVTG_FLG
+        description: '{{ doc("tbl_SA_PRD_TAX_ADVTG_FLG") }}'
+      - name: SPCLZD_PRD_FLG
+        description: '{{ doc("tbl_SA_PRD_SPCLZD_PRD_FLG") }}'
+      - name: FNC_PRD_FLG
+        description: '{{ doc("tbl_SA_PRD_FNC_PRD_FLG") }}'
+      - name: EXOTC_FLG
+        description: '{{ doc("tbl_SA_PRD_EXOTC_FLG") }}'
+      - name: RDLY_MKTBL_FLG
+        description: '{{ doc("tbl_SA_PRD_RDLY_MKTBL_FLG") }}'
+      - name: INS_TY_ID
+        description: '{{ doc("tbl_SA_PRD_INS_TY_ID") }}'
+      - name: INVSTM_PRD_TY_ID
+        description: '{{ doc("tbl_SA_PRD_INVSTM_PRD_TY_ID") }}'
+      - name: INVSTM_PRD_USE_ID
+        description: '{{ doc("tbl_SA_PRD_INVSTM_PRD_USE_ID") }}'
+      - name: INVSTM_OBJ_TY_ID
+        description: '{{ doc("tbl_SA_PRD_INVSTM_OBJ_TY_ID") }}'
+      - name: INVSTM_OWNRSH_TY_ID
+        description: '{{ doc("tbl_SA_PRD_INVSTM_OWNRSH_TY_ID") }}'
+      - name: SRVC_TY_ID
+        description: '{{ doc("tbl_SA_PRD_SRVC_TY_ID") }}'
+      - name: OUTSRC_SRVC_FLG
+        description: '{{ doc("tbl_SA_PRD_OUTSRC_SRVC_FLG") }}'
+      - name: CARD_SRVC_TY_ID
+        description: '{{ doc("tbl_SA_PRD_CARD_SRVC_TY_ID") }}'
+      - name: PMT_CUT_OFF_TM
+        description: '{{ doc("tbl_SA_PRD_PMT_CUT_OFF_TM") }}'
+      - name: FMIMT_TY_ID
+        description: '{{ doc("tbl_SA_PRD_FMIMT_TY_ID") }}'
+      - name: ISSR_ID
+        description: '{{ doc("tbl_SA_PRD_ISSR_ID") }}'
+      - name: PRIV_TO_PUB_TRD_IND
+        description: '{{ doc("tbl_SA_PRD_PRIV_TO_PUB_TRD_IND") }}'
+      - name: ISS_DT
+        description: '{{ doc("tbl_SA_PRD_ISS_DT") }}'
+  - name: SA_RI_ELTRN_ADDR
+    description: '{{ doc("tbl_SA_RI_ELTRN_ADDR") }}'
+    columns:
+      - name: RI_ID
+        description: '{{ doc("tbl_SA_RI_ELTRN_ADDR_RI_ID") }}'
+      - name: RI_TO_ELTRN_ADDR_RL_TY_ID
+        description: '{{ doc("tbl_SA_RI_ELTRN_ADDR_RI_TO_ELTRN_ADDR_RL_TY_ID") }}'
+      - name: EFFV_DT
+        description: '{{ doc("tbl_SA_RI_ELTRN_ADDR_EFFV_DT") }}'
+      - name: RNK
+        description: '{{ doc("tbl_SA_RI_ELTRN_ADDR_RNK") }}'
+      - name: END_DT
+        description: '{{ doc("tbl_SA_RI_ELTRN_ADDR_END_DT") }}'
+      - name: EFFV_TS
+        description: '{{ doc("tbl_SA_RI_ELTRN_ADDR_EFFV_TS") }}'
+      - name: END_TS
+        description: '{{ doc("tbl_SA_RI_ELTRN_ADDR_END_TS") }}'
+      - name: SRC_SYS_CD
+        description: '{{ doc("tbl_SA_RI_ELTRN_ADDR_SRC_SYS_CD") }}'
+      - name: SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_RI_ELTRN_ADDR_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: TNNT_CD_ID
+        description: '{{ doc("tbl_SA_RI_ELTRN_ADDR_TNNT_CD_ID") }}'
+      - name: BTCH_ID
+        description: '{{ doc("tbl_SA_RI_ELTRN_ADDR_BTCH_ID") }}'
+      - name: RI_SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_RI_ELTRN_ADDR_RI_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: RI_SRC_SYS_CD
+        description: '{{ doc("tbl_SA_RI_ELTRN_ADDR_RI_SRC_SYS_CD") }}'
+      - name: ELTRN_ADDR_TY_ID
+        description: '{{ doc("tbl_SA_RI_ELTRN_ADDR_ELTRN_ADDR_TY_ID") }}'
+      - name: TLPHNC_DVC_TY_ID
+        description: '{{ doc("tbl_SA_RI_ELTRN_ADDR_TLPHNC_DVC_TY_ID") }}'
+      - name: GRNULE
+        description: '{{ doc("tbl_SA_RI_ELTRN_ADDR_GRNULE") }}'
+      - name: CNTRY_PH_CD
+        description: '{{ doc("tbl_SA_RI_ELTRN_ADDR_CNTRY_PH_CD") }}'
+      - name: PH_CD
+        description: '{{ doc("tbl_SA_RI_ELTRN_ADDR_PH_CD") }}'
+      - name: LCL_NBR
+        description: '{{ doc("tbl_SA_RI_ELTRN_ADDR_LCL_NBR") }}'
+      - name: EXTNSN
+        description: '{{ doc("tbl_SA_RI_ELTRN_ADDR_EXTNSN") }}'
+      - name: FL_PH_NBR
+        description: '{{ doc("tbl_SA_RI_ELTRN_ADDR_FL_PH_NBR") }}'
+      - name: EMAIL_USR_ID
+        description: '{{ doc("tbl_SA_RI_ELTRN_ADDR_EMAIL_USR_ID") }}'
+      - name: MAXM_MSG_SZ
+        description: '{{ doc("tbl_SA_RI_ELTRN_ADDR_MAXM_MSG_SZ") }}'
+      - name: ATTAC_ALWD_FLG
+        description: '{{ doc("tbl_SA_RI_ELTRN_ADDR_ATTAC_ALWD_FLG") }}'
+      - name: TXT_ONLY_FLG
+        description: '{{ doc("tbl_SA_RI_ELTRN_ADDR_TXT_ONLY_FLG") }}'
+      - name: ELTRN_ADDR_DM_ID
+        description: '{{ doc("tbl_SA_RI_ELTRN_ADDR_ELTRN_ADDR_DM_ID") }}'
+      - name: WEB_ADDR_TY_ID
+        description: '{{ doc("tbl_SA_RI_ELTRN_ADDR_WEB_ADDR_TY_ID") }}'
+      - name: WEB_ADDR_PRTCL_TY_ID
+        description: '{{ doc("tbl_SA_RI_ELTRN_ADDR_WEB_ADDR_PRTCL_TY_ID") }}'
+      - name: URL
+        description: '{{ doc("tbl_SA_RI_ELTRN_ADDR_URL") }}'
+  - name: SA_RI_PSTL_ADDR
+    description: '{{ doc("tbl_SA_RI_PSTL_ADDR") }}'
+    columns:
+      - name: RI_ID
+        description: '{{ doc("tbl_SA_RI_PSTL_ADDR_RI_ID") }}'
+      - name: RI_TO_PSTL_ADDR_RL_TY_ID
+        description: '{{ doc("tbl_SA_RI_PSTL_ADDR_RI_TO_PSTL_ADDR_RL_TY_ID") }}'
+      - name: EFFV_DT
+        description: '{{ doc("tbl_SA_RI_PSTL_ADDR_EFFV_DT") }}'
+      - name: RNK
+        description: '{{ doc("tbl_SA_RI_PSTL_ADDR_RNK") }}'
+      - name: END_DT
+        description: '{{ doc("tbl_SA_RI_PSTL_ADDR_END_DT") }}'
+      - name: EFFV_TS
+        description: '{{ doc("tbl_SA_RI_PSTL_ADDR_EFFV_TS") }}'
+      - name: END_TS
+        description: '{{ doc("tbl_SA_RI_PSTL_ADDR_END_TS") }}'
+      - name: SRC_SYS_CD
+        description: '{{ doc("tbl_SA_RI_PSTL_ADDR_SRC_SYS_CD") }}'
+      - name: SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_RI_PSTL_ADDR_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: TNNT_CD_ID
+        description: '{{ doc("tbl_SA_RI_PSTL_ADDR_TNNT_CD_ID") }}'
+      - name: BTCH_ID
+        description: '{{ doc("tbl_SA_RI_PSTL_ADDR_BTCH_ID") }}'
+      - name: RI_SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_RI_PSTL_ADDR_RI_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: RI_SRC_SYS_CD
+        description: '{{ doc("tbl_SA_RI_PSTL_ADDR_RI_SRC_SYS_CD") }}'
+      - name: ADDR_NM
+        description: '{{ doc("tbl_SA_RI_PSTL_ADDR_ADDR_NM") }}'
+      - name: UNT_NBR
+        description: '{{ doc("tbl_SA_RI_PSTL_ADDR_UNT_NBR") }}'
+      - name: BLDG_NBR
+        description: '{{ doc("tbl_SA_RI_PSTL_ADDR_BLDG_NBR") }}'
+      - name: STE_NBR
+        description: '{{ doc("tbl_SA_RI_PSTL_ADDR_STE_NBR") }}'
+      - name: STE_NM
+        description: '{{ doc("tbl_SA_RI_PSTL_ADDR_STE_NM") }}'
+      - name: STE_TY
+        description: '{{ doc("tbl_SA_RI_PSTL_ADDR_STE_TY") }}'
+      - name: STE_DRCTN
+        description: '{{ doc("tbl_SA_RI_PSTL_ADDR_STE_DRCTN") }}'
+      - name: STE_SFX
+        description: '{{ doc("tbl_SA_RI_PSTL_ADDR_STE_SFX") }}'
+      - name: PSTCD_AREA_ID
+        description: '{{ doc("tbl_SA_RI_PSTL_ADDR_PSTCD_AREA_ID") }}'
+      - name: DSTRCT
+        description: '{{ doc("tbl_SA_RI_PSTL_ADDR_DSTRCT") }}'
+      - name: CITY_ID
+        description: '{{ doc("tbl_SA_RI_PSTL_ADDR_CITY_ID") }}'
+      - name: ST_ID
+        description: '{{ doc("tbl_SA_RI_PSTL_ADDR_ST_ID") }}'
+      - name: CNTY_ID
+        description: '{{ doc("tbl_SA_RI_PSTL_ADDR_CNTY_ID") }}'
+      - name: CNTRY_ID
+        description: '{{ doc("tbl_SA_RI_PSTL_ADDR_CNTRY_ID") }}'
+      - name: RT_ID
+        description: '{{ doc("tbl_SA_RI_PSTL_ADDR_RT_ID") }}'
+      - name: CENSUS_AREA_ID
+        description: '{{ doc("tbl_SA_RI_PSTL_ADDR_CENSUS_AREA_ID") }}'
+      - name: BLDG_TY_ID
+        description: '{{ doc("tbl_SA_RI_PSTL_ADDR_BLDG_TY_ID") }}'
+      - name: LONGD
+        description: '{{ doc("tbl_SA_RI_PSTL_ADDR_LONGD") }}'
+      - name: LATD
+        description: '{{ doc("tbl_SA_RI_PSTL_ADDR_LATD") }}'
+      - name: PSTL_BARCDE
+        description: '{{ doc("tbl_SA_RI_PSTL_ADDR_PSTL_BARCDE") }}'
+  - name: SA_RI_TO_SA_GRP_RL
+    description: '{{ doc("tbl_SA_RI_TO_SA_GRP_RL") }}'
+    columns:
+      - name: GRP_ID
+        description: '{{ doc("tbl_SA_RI_TO_SA_GRP_RL_GRP_ID") }}'
+      - name: RI_TO_GRP_RL_TY_ID
+        description: '{{ doc("tbl_SA_RI_TO_SA_GRP_RL_RI_TO_GRP_RL_TY_ID") }}'
+      - name: EFFV_DT
+        description: '{{ doc("tbl_SA_RI_TO_SA_GRP_RL_EFFV_DT") }}'
+      - name: RI_ID
+        description: '{{ doc("tbl_SA_RI_TO_SA_GRP_RL_RI_ID") }}'
+      - name: END_DT
+        description: '{{ doc("tbl_SA_RI_TO_SA_GRP_RL_END_DT") }}'
+      - name: EFFV_TS
+        description: '{{ doc("tbl_SA_RI_TO_SA_GRP_RL_EFFV_TS") }}'
+      - name: END_TS
+        description: '{{ doc("tbl_SA_RI_TO_SA_GRP_RL_END_TS") }}'
+      - name: SRC_SYS_CD
+        description: '{{ doc("tbl_SA_RI_TO_SA_GRP_RL_SRC_SYS_CD") }}'
+      - name: SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_RI_TO_SA_GRP_RL_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: TNNT_CD_ID
+        description: '{{ doc("tbl_SA_RI_TO_SA_GRP_RL_TNNT_CD_ID") }}'
+      - name: BTCH_ID
+        description: '{{ doc("tbl_SA_RI_TO_SA_GRP_RL_BTCH_ID") }}'
+      - name: RI_SRC_SYS_CD
+        description: '{{ doc("tbl_SA_RI_TO_SA_GRP_RL_RI_SRC_SYS_CD") }}'
+      - name: RI_SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_RI_TO_SA_GRP_RL_RI_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: GRP_IP_SRC_SYS_CD
+        description: '{{ doc("tbl_SA_RI_TO_SA_GRP_RL_GRP_IP_SRC_SYS_CD") }}'
+      - name: GRP_IP_SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_RI_TO_SA_GRP_RL_GRP_IP_SRC_SYS_UNQ_KEY_TXT") }}'
+  - name: SA_RI_TO_SA_IP_RL
+    description: '{{ doc("tbl_SA_RI_TO_SA_IP_RL") }}'
+    columns:
+      - name: RI_ID
+        description: '{{ doc("tbl_SA_RI_TO_SA_IP_RL_RI_ID") }}'
+      - name: IP_ID
+        description: '{{ doc("tbl_SA_RI_TO_SA_IP_RL_IP_ID") }}'
+      - name: RI_TO_IP_RL_TY_ID
+        description: '{{ doc("tbl_SA_RI_TO_SA_IP_RL_RI_TO_IP_RL_TY_ID") }}'
+      - name: EFFV_DT
+        description: '{{ doc("tbl_SA_RI_TO_SA_IP_RL_EFFV_DT") }}'
+      - name: END_DT
+        description: '{{ doc("tbl_SA_RI_TO_SA_IP_RL_END_DT") }}'
+      - name: EFFV_TS
+        description: '{{ doc("tbl_SA_RI_TO_SA_IP_RL_EFFV_TS") }}'
+      - name: END_TS
+        description: '{{ doc("tbl_SA_RI_TO_SA_IP_RL_END_TS") }}'
+      - name: SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_RI_TO_SA_IP_RL_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: SRC_SYS_CD
+        description: '{{ doc("tbl_SA_RI_TO_SA_IP_RL_SRC_SYS_CD") }}'
+      - name: TNNT_CD_ID
+        description: '{{ doc("tbl_SA_RI_TO_SA_IP_RL_TNNT_CD_ID") }}'
+      - name: BTCH_ID
+        description: '{{ doc("tbl_SA_RI_TO_SA_IP_RL_BTCH_ID") }}'
+      - name: RI_SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_RI_TO_SA_IP_RL_RI_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: RI_SRC_SYS_CD
+        description: '{{ doc("tbl_SA_RI_TO_SA_IP_RL_RI_SRC_SYS_CD") }}'
+      - name: IP_SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_RI_TO_SA_IP_RL_IP_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: IP_SRC_SYS_CD
+        description: '{{ doc("tbl_SA_RI_TO_SA_IP_RL_IP_SRC_SYS_CD") }}'
+      - name: PCT_AMT
+        description: '{{ doc("tbl_SA_RI_TO_SA_IP_RL_PCT_AMT") }}'
+  - name: SA_RI_TO_SA_RI_RL
+    description: '{{ doc("tbl_SA_RI_TO_SA_RI_RL") }}'
+    columns:
+      - name: SUBJT_RI_ID
+        description: '{{ doc("tbl_SA_RI_TO_SA_RI_RL_SUBJT_RI_ID") }}'
+      - name: OBJ_RI_ID
+        description: '{{ doc("tbl_SA_RI_TO_SA_RI_RL_OBJ_RI_ID") }}'
+      - name: RI_TO_RI_RL_TY_ID
+        description: '{{ doc("tbl_SA_RI_TO_SA_RI_RL_RI_TO_RI_RL_TY_ID") }}'
+      - name: EFFV_DT
+        description: '{{ doc("tbl_SA_RI_TO_SA_RI_RL_EFFV_DT") }}'
+      - name: END_DT
+        description: '{{ doc("tbl_SA_RI_TO_SA_RI_RL_END_DT") }}'
+      - name: EFFV_TS
+        description: '{{ doc("tbl_SA_RI_TO_SA_RI_RL_EFFV_TS") }}'
+      - name: END_TS
+        description: '{{ doc("tbl_SA_RI_TO_SA_RI_RL_END_TS") }}'
+      - name: SRC_SYS_CD
+        description: '{{ doc("tbl_SA_RI_TO_SA_RI_RL_SRC_SYS_CD") }}'
+      - name: SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_RI_TO_SA_RI_RL_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: TNNT_CD_ID
+        description: '{{ doc("tbl_SA_RI_TO_SA_RI_RL_TNNT_CD_ID") }}'
+      - name: BTCH_ID
+        description: '{{ doc("tbl_SA_RI_TO_SA_RI_RL_BTCH_ID") }}'
+      - name: SUBJT_RI_SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_RI_TO_SA_RI_RL_SUBJT_RI_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: SUBJT_RI_SRC_SYS_CD
+        description: '{{ doc("tbl_SA_RI_TO_SA_RI_RL_SUBJT_RI_SRC_SYS_CD") }}'
+      - name: OBJ_RI_SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_RI_TO_SA_RI_RL_OBJ_RI_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: OBJ_RI_SRC_SYS_CD
+        description: '{{ doc("tbl_SA_RI_TO_SA_RI_RL_OBJ_RI_SRC_SYS_CD") }}'
+  - name: SA_RI
+    description: '{{ doc("tbl_SA_RI") }}'
+    columns:
+      - name: RI_ID
+        description: '{{ doc("tbl_SA_RI_RI_ID") }}'
+      - name: SRC_SYS_CD
+        description: '{{ doc("tbl_SA_RI_SRC_SYS_CD") }}'
+      - name: SRC_SYS_UNQ_KEY_TXT
+        description: '{{ doc("tbl_SA_RI_SRC_SYS_UNQ_KEY_TXT") }}'
+      - name: EFFV_TS
+        description: '{{ doc("tbl_SA_RI_EFFV_TS") }}'
+      - name: END_TS
+        description: '{{ doc("tbl_SA_RI_END_TS") }}'
+      - name: TNNT_CD_ID
+        description: '{{ doc("tbl_SA_RI_TNNT_CD_ID") }}'
+      - name: BTCH_ID
+        description: '{{ doc("tbl_SA_RI_BTCH_ID") }}'
+      - name: RI_TY_ID
+        description: '{{ doc("tbl_SA_RI_RI_TY_ID") }}'
+      - name: EFFV_DT
+        description: '{{ doc("tbl_SA_RI_EFFV_DT") }}'
+      - name: END_DT
+        description: '{{ doc("tbl_SA_RI_END_DT") }}'
+      - name: RI_LC_STS_DT
+        description: '{{ doc("tbl_SA_RI_RI_LC_STS_DT") }}'
+      - name: RI_LC_STS_TY_ID
+        description: '{{ doc("tbl_SA_RI_RI_LC_STS_TY_ID") }}'
+      - name: OWNR_ID
+        description: '{{ doc("tbl_SA_RI_OWNR_ID") }}'
+      - name: OWNR_DT
+        description: '{{ doc("tbl_SA_RI_OWNR_DT") }}'
+      - name: HLDR_ID
+        description: '{{ doc("tbl_SA_RI_HLDR_ID") }}'
+      - name: HLDR_DT
+        description: '{{ doc("tbl_SA_RI_HLDR_DT") }}'
+      - name: RI_SIGNF_ID
+        description: '{{ doc("tbl_SA_RI_RI_SIGNF_ID") }}'
+      - name: RI_NM
+        description: '{{ doc("tbl_SA_RI_RI_NM") }}'
+      - name: DESC
+        description: '{{ doc("tbl_SA_RI_DESC") }}'
+      - name: NON_CLTZL_RI_TY_ID
+        description: '{{ doc("tbl_SA_RI_NON_CLTZL_RI_TY_ID") }}'
+      - name: DOC_ITM_TY_ID
+        description: '{{ doc("tbl_SA_RI_DOC_ITM_TY_ID") }}'
+      - name: LANG_ID
+        description: '{{ doc("tbl_SA_RI_LANG_ID") }}'
+      - name: WEB_ADDR_ID
+        description: '{{ doc("tbl_SA_RI_WEB_ADDR_ID") }}'
+      - name: WEBSITE_ID
+        description: '{{ doc("tbl_SA_RI_WEBSITE_ID") }}'
+      - name: WEBSITE_HME_PG_FLG
+        description: '{{ doc("tbl_SA_RI_WEBSITE_HME_PG_FLG") }}'
+      - name: USR_HME_PG_FLG
+        description: '{{ doc("tbl_SA_RI_USR_HME_PG_FLG") }}'
+      - name: WEB_PG_FNT_SZ_VAL
+        description: '{{ doc("tbl_SA_RI_WEB_PG_FNT_SZ_VAL") }}'
+      - name: CLTZL_RI_TY_ID
+        description: '{{ doc("tbl_SA_RI_CLTZL_RI_TY_ID") }}'
+      - name: CHTL_TY_ID
+        description: '{{ doc("tbl_SA_RI_CHTL_TY_ID") }}'
+      - name: ELCDD_TY_ID
+        description: '{{ doc("tbl_SA_RI_ELCDD_TY_ID") }}'
+      - name: ELCDD_IDFN_CD
+        description: '{{ doc("tbl_SA_RI_ELCDD_IDFN_CD") }}'
+      - name: HNM
+        description: '{{ doc("tbl_SA_RI_HNM") }}'
+      - name: TRML_TY_ID
+        description: '{{ doc("tbl_SA_RI_TRML_TY_ID") }}'
+      - name: TRML_LO_TY_ID
+        description: '{{ doc("tbl_SA_RI_TRML_LO_TY_ID") }}'
+      - name: ON_SITE_FLG
+        description: '{{ doc("tbl_SA_RI_ON_SITE_FLG") }}'
+      - name: TLPHNC_DVC_TY_ID
+        description: '{{ doc("tbl_SA_RI_TLPHNC_DVC_TY_ID") }}'
+      - name: DVC_MNFCTR
+        description: '{{ doc("tbl_SA_RI_DVC_MNFCTR") }}'
+      - name: DVC_VERSION
+        description: '{{ doc("tbl_SA_RI_DVC_VERSION") }}'
+      - name: DVC_MODL
+        description: '{{ doc("tbl_SA_RI_DVC_MODL") }}'
+      - name: OPER
+        description: '{{ doc("tbl_SA_RI_OPER") }}'
+  - name: FNC_MKT_ORDR
+    description: '{{ doc("tbl_FNC_MKT_ORDR") }}'
+    columns:
+      - name: FNC_MKT_ORDR_ID
+        description: '{{ doc("tbl_FNC_MKT_ORDR_FNC_MKT_ORDR_ID") }}'
+        tests:
+          - unique
+          - not_null
+      - name: FNC_MKT_IMT_ID
+        description: '{{ doc("tbl_FNC_MKT_ORDR_FNC_MKT_IMT_ID") }}'
+        tests:
+          - not_null
+          - validate_regex:
+              regex: '[A]{1}[0-9]{8}' 
+      - name: FNC_MKT_ORDR_TP_ID
+        description: '{{ doc("tbl_FNC_MKT_ORDR_FNC_MKT_ORDR_TP_ID") }}'
+      - name: FNC_MKT_ORDR_TXN_TP_ID
+        description: '{{ doc("tbl_FNC_MKT_ORDR_FNC_MKT_ORDR_TXN_TP_ID") }}'
+      - name: UPR_PRC
+        description: '{{ doc("tbl_FNC_MKT_ORDR_UPR_PRC") }}'
+      - name: ORDR_PRC
+        description: '{{ doc("tbl_FNC_MKT_ORDR_ORDR_PRC") }}'
+        tests:
+          - not_null
+          - valid_min_number:
+              from: 0
+      - name: LWR_PRC
+        description: '{{ doc("tbl_FNC_MKT_ORDR_LWR_PRC") }}'
+      - name: ORDR_QTY
+        description: '{{ doc("tbl_FNC_MKT_ORDR_ORDR_QTY") }}'
+      - name: ORDR_VAL
+        description: '{{ doc("tbl_FNC_MKT_ORDR_ORDR_VAL") }}'
+      - name: ORDR_END_DT
+        description: '{{ doc("tbl_FNC_MKT_ORDR_ORDR_END_DT") }}'
+      - name: ORDR_END_TM
+        description: '{{ doc("tbl_FNC_MKT_ORDR_ORDR_END_TM") }}'
+      - name: CNCL_DT_TM
+        description: '{{ doc("tbl_FNC_MKT_ORDR_CNCL_DT_TM") }}'
+      - name: DAY_ORDR_F
+        description: '{{ doc("tbl_FNC_MKT_ORDR_DAY_ORDR_F") }}'
+      - name: FILL_OR_KILL_F
+        description: '{{ doc("tbl_FNC_MKT_ORDR_FILL_OR_KILL_F") }}'
+      - name: CD_MET_F
+        description: '{{ doc("tbl_FNC_MKT_ORDR_CD_MET_F") }}'
+      - name: ORDR_CCY_ID
+        description: '{{ doc("tbl_FNC_MKT_ORDR_ORDR_CCY_ID") }}'
+  - name: AC_AR
+    description: '{{ doc("tbl_AC_AR") }}'
+    columns:
+      - name: AC_AR_ID
+        description: '{{ doc("tbl_AC_AR_AC_AR_ID") }}'
+        tests:
+          - unique
+          - not_null
+          - validate_regex:
+              regex: '[A]{1}[0-9]{8}' 
+      - name: AC_TP_ID
+        description: '{{ doc("tbl_AC_AR_AC_TP_ID") }}'
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Monthly Issuance', 'Weekly Issuance', 'Issuance After Transaction'] 
+      - name: BAL_AU_ID
+        description: '{{ doc("tbl_AC_AR_BAL_AU_ID") }}'
+      - name: RSTRC_DSCL_TP_ID
+        description: '{{ doc("tbl_AC_AR_RSTRC_DSCL_TP_ID") }}'
+      - name: LAST_STMT_DT
+        description: '{{ doc("tbl_AC_AR_LAST_STMT_DT") }}'
+      - name: LAST_TXN_DT
+        description: '{{ doc("tbl_AC_AR_LAST_TXN_DT") }}'
+      - name: CRN_FIX_PRD_END_DT
+        description: '{{ doc("tbl_AC_AR_CRN_FIX_PRD_END_DT") }}'
+      - name: INT_ACG_F
+        description: '{{ doc("tbl_AC_AR_INT_ACG_F") }}'
+      - name: AC_NBR
+        description: '{{ doc("tbl_AC_AR_AC_NBR") }}'
+      - name: INT_CLCN_EFF_DT
+        description: '{{ doc("tbl_AC_AR_INT_CLCN_EFF_DT") }}'
+      - name: NXT_CMPD_INT_DT
+        description: '{{ doc("tbl_AC_AR_NXT_CMPD_INT_DT") }}'
+      - name: EXEC_POLCY_CCNT_F
+        description: '{{ doc("tbl_AC_AR_EXEC_POLCY_CCNT_F") }}'
+      - name: NON_MKT_EXEC_CCNT_F
+        description: '{{ doc("tbl_AC_AR_NON_MKT_EXEC_CCNT_F") }}'
+      - name: EXRNC_WRN_F
+        description: '{{ doc("tbl_AC_AR_EXRNC_WRN_F") }}'
+      - name: AR_INAPT_F
+        description: '{{ doc("tbl_AC_AR_AR_INAPT_F") }}'
+      - name: BEST_EXEC_POLCY_F
+        description: '{{ doc("tbl_AC_AR_BEST_EXEC_POLCY_F") }}'
+      - name: BEST_EXEC_DT
+        description: '{{ doc("tbl_AC_AR_BEST_EXEC_DT") }}'
+      - name: AML_MOND_DT
+        description: '{{ doc("tbl_AC_AR_AML_MOND_DT") }}'
+      - name: XTRT_F
+        description: '{{ doc("tbl_AC_AR_XTRT_F") }}'
+      - name: ITNL_BNKG_AC_NBR
+        description: '{{ doc("tbl_AC_AR_ITNL_BNKG_AC_NBR") }}'
+      - name: SCR_AR_ID
+        description: '{{ doc("tbl_AC_AR_SCR_AR_ID") }}'
+      - name: IVSM_OWN_TP_ID
+        description: '{{ doc("tbl_AC_AR_IVSM_OWN_TP_ID") }}'
+      - name: IVSM_OBJV_TP_ID
+        description: '{{ doc("tbl_AC_AR_IVSM_OBJV_TP_ID") }}'
+      - name: CPTL_PRJ_PYBK_NO_OF_YR
+        description: '{{ doc("tbl_AC_AR_CPTL_PRJ_PYBK_NO_OF_YR") }}'
+      - name: PRVT_X_PBLC_IVSM_IND
+        description: '{{ doc("tbl_AC_AR_PRVT_X_PBLC_IVSM_IND") }}'
+      - name: INR_RATE_OF_RET
+        description: '{{ doc("tbl_AC_AR_INR_RATE_OF_RET") }}'
+      - name: IVSM_HRZN_ID
+        description: '{{ doc("tbl_AC_AR_IVSM_HRZN_ID") }}'
+      - name: FND_SHR_ISSU_TP_ID
+        description: '{{ doc("tbl_AC_AR_FND_SHR_ISSU_TP_ID") }}'
+      - name: PRN_FND_IVSM_ID
+        description: '{{ doc("tbl_AC_AR_PRN_FND_IVSM_ID") }}'
+      - name: MTL_FND_F
+        description: '{{ doc("tbl_AC_AR_MTL_FND_F") }}'
+      - name: MGN_FND_F
+        description: '{{ doc("tbl_AC_AR_MGN_FND_F") }}'
+      - name: IVSR_RSTN_F
+        description: '{{ doc("tbl_AC_AR_IVSR_RSTN_F") }}'
+      - name: RSK_CTY_ID
+        description: '{{ doc("tbl_AC_AR_RSK_CTY_ID") }}'
+      - name: DAY_TRDG_F
+        description: '{{ doc("tbl_AC_AR_DAY_TRDG_F") }}'
+      - name: SUTBL_VERF_BY_ID
+        description: '{{ doc("tbl_AC_AR_SUTBL_VERF_BY_ID") }}'
+      - name: SUTBL_VERF_DT
+        description: '{{ doc("tbl_AC_AR_SUTBL_VERF_DT") }}'
+      - name: AC_APRV_BY_ID
+        description: '{{ doc("tbl_AC_AR_AC_APRV_BY_ID") }}'
+      - name: AC_APRV_DT
+        description: '{{ doc("tbl_AC_AR_AC_APRV_DT") }}'
+        tests:
+          - not_null
+          - valid_date
+      - name: AC_LNG_ID
+        description: '{{ doc("tbl_AC_AR_AC_LNG_ID") }}'
+      - name: CMM_ADR_TP_ID
+        description: '{{ doc("tbl_AC_AR_CMM_ADR_TP_ID") }}'
+        tests:
+          - not_null
+          - valid_number_range:
+              from: 1
+              to: 77 
+      - name: TRDG_MAND_AHR_TP_ID
+        description: '{{ doc("tbl_AC_AR_TRDG_MAND_AHR_TP_ID") }}'
+      - name: BNCH_PD_ID
+        description: '{{ doc("tbl_AC_AR_BNCH_PD_ID") }}'
+      - name: DFLT_IVSM_PD_ID
+        description: '{{ doc("tbl_AC_AR_DFLT_IVSM_PD_ID") }}'
+      - name: SRC_OF_INCM_TP_ID
+        description: '{{ doc("tbl_AC_AR_SRC_OF_INCM_TP_ID") }}'
+      - name: TRDG_ST_TP_ID
+        description: '{{ doc("tbl_AC_AR_TRDG_ST_TP_ID") }}'
+      - name: INS_POLCY_DOC_ID
+        description: '{{ doc("tbl_AC_AR_INS_POLCY_DOC_ID") }}'
+      - name: INS_TP_ID
+        description: '{{ doc("tbl_AC_AR_INS_TP_ID") }}'
+      - name: INS_HZD_TP_ID
+        description: '{{ doc("tbl_AC_AR_INS_HZD_TP_ID") }}'
+      - name: INS_PD_ID
+        description: '{{ doc("tbl_AC_AR_INS_PD_ID") }}'
+      - name: INS_AR_PAYER_TP_ID
+        description: '{{ doc("tbl_AC_AR_INS_AR_PAYER_TP_ID") }}'
+      - name: INS_PD_CMPT_NBR
+        description: '{{ doc("tbl_AC_AR_INS_PD_CMPT_NBR") }}'
+  - name: CC_AR
+    description: '{{ doc("tbl_CC_AR") }}'
+    columns:
+      - name: CC_AR_ID
+        description: '{{ doc("tbl_CC_AR_CC_AR_ID") }}'
+        tests:
+          - unique
+          - not_null
+          - validate_regex:
+              regex: '[V]{1}[0-9]{8}' 
+      - name: CC_TP_ID
+        description: '{{ doc("tbl_CC_AR_CC_TP_ID") }}'
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['VISA Signature', 'VISA Infinite', 'VISA Standard'] 
+      - name: EXPIRY_DT
+        description: '{{ doc("tbl_CC_AR_EXPIRY_DT") }}'
+        tests:
+          - not_null
+          - valid_date
+      - name: CHP_CARD_F
+        description: '{{ doc("tbl_CC_AR_CHP_CARD_F") }}'
+      - name: SCD_AC_F
+        description: '{{ doc("tbl_CC_AR_SCD_AC_F") }}'
+      - name: TFR_BAL_OTSND_F
+        description: '{{ doc("tbl_CC_AR_TFR_BAL_OTSND_F") }}'
+      - name: NBR_OF_ADL_CARDS
+        description: '{{ doc("tbl_CC_AR_NBR_OF_ADL_CARDS") }}'
+      - name: PHOTO_F
+        description: '{{ doc("tbl_CC_AR_PHOTO_F") }}'
+      - name: INTRDY_PRD_EXPIRY_DT
+        description: '{{ doc("tbl_CC_AR_INTRDY_PRD_EXPIRY_DT") }}'
+      - name: AR_SRC_SYS_CD
+        description: '{{ doc("tbl_CC_AR_AR_SRC_SYS_CD") }}'
+        tests:
+          - unique
+          - not_null
+          - validate_regex:
+              regex: '[D]{1}[0-9]{8}' 
+  - name: TXN
+    description: '{{ doc("tbl_TXN") }}'
+    columns:
+      - name: TXN_ID
+        description: '{{ doc("tbl_TXN_TXN_ID") }}'
+        tests:
+          - unique
+          - not_null
+          - validate_regex:
+              regex: '[T]{1}[0-9]{8}'
+      - name: TXN_TP_ID
+        description: '{{ doc("tbl_TXN_TXN_TP_ID") }}'
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Credit', 'Debit'] 
+      - name: RQS_CNL_ID
+        description: '{{ doc("tbl_TXN_RQS_CNL_ID") }}'
+      - name: SETL_CNL_ID
+        description: '{{ doc("tbl_TXN_SETL_CNL_ID") }}'
+      - name: TXN_CCY_ID
+        description: '{{ doc("tbl_TXN_TXN_CCY_ID") }}'
+      - name: CNVR_CCY_ID
+        description: '{{ doc("tbl_TXN_CNVR_CCY_ID") }}'
+      - name: EXG_RATE_TO_CNVR_CCY
+        description: '{{ doc("tbl_TXN_EXG_RATE_TO_CNVR_CCY") }}'
+      - name: MSR_PRD_ID
+        description: '{{ doc("tbl_TXN_MSR_PRD_ID") }}'
+      - name: TM_OF_DAY_TBND_ID
+        description: '{{ doc("tbl_TXN_TM_OF_DAY_TBND_ID") }}'
+      - name: EXCP_CAUS_ID
+        description: '{{ doc("tbl_TXN_EXCP_CAUS_ID") }}'
+      - name: EXCP_IMP_ID
+        description: '{{ doc("tbl_TXN_EXCP_IMP_ID") }}'
+      - name: OU_ID
+        description: '{{ doc("tbl_TXN_OU_ID") }}'
+      - name: PRIM_AR_ID
+        description: '{{ doc("tbl_TXN_PRIM_AR_ID") }}'
+        tests:
+          - not_null
+          - validate_regex:
+              regex: '[A]{1}[0-9]{8}'
+      - name: RQS_CMM_ID
+        description: '{{ doc("tbl_TXN_RQS_CMM_ID") }}'
+      - name: NET_CASH_FLOW_AMT
+        description: '{{ doc("tbl_TXN_NET_CASH_FLOW_AMT") }}'
+        tests:
+          - not_null
+      - name: TXN_TM
+        description: '{{ doc("tbl_TXN_TXN_TM") }}'
+        tests:
+          - not_null
+      - name: TXN_DT
+        description: '{{ doc("tbl_TXN_TXN_DT") }}'
+        tests:
+          - not_null
+          - valid_date
+      - name: TXN_BOOK_DT
+        description: '{{ doc("tbl_TXN_TXN_BOOK_DT") }}'
+      - name: TXN_VAL_DT
+        description: '{{ doc("tbl_TXN_TXN_VAL_DT") }}'
+      - name: DVC_ID
+        description: '{{ doc("tbl_TXN_DVC_ID") }}'
+      - name: SSPCS_EV_GRP_ID
+        description: '{{ doc("tbl_TXN_SSPCS_EV_GRP_ID") }}'
+      - name: FEE_X_CMSN_AMT
+        description: '{{ doc("tbl_TXN_FEE_X_CMSN_AMT") }}'
+        tests:
+          - not_null
+  - name: LOAN_AR
+    description: '{{ doc("tbl_LOAN_AR") }}'
+    columns:
+      - name: LOAN_AR_ID
+        description: '{{ doc("tbl_LOAN_AR_LOAN_AR_ID") }}'
+        tests:
+          - unique
+          - not_null
+          - validate_regex:
+              regex: '[L]{1}[0-9]{8}|[L]{2}[0-9]{7}' 
+      - name: EFF_INT_RATE_ID
+        description: '{{ doc("tbl_LOAN_AR_EFF_INT_RATE_ID") }}'
+      - name: INT_RATE_EFF_DT
+        description: '{{ doc("tbl_LOAN_AR_INT_RATE_EFF_DT") }}'
+        tests:
+          - not_null
+          - valid_date
+      - name: LOAN_ANUL_PRPYMT_PCT_ID
+        description: '{{ doc("tbl_LOAN_AR_LOAN_ANUL_PRPYMT_PCT_ID") }}'
+      - name: LOAN_NEG_AMRZ_CAP_RATE_ID
+        description: '{{ doc("tbl_LOAN_AR_LOAN_NEG_AMRZ_CAP_RATE_ID") }}'
+      - name: PYMT_TOT_NBR
+        description: '{{ doc("tbl_LOAN_AR_PYMT_TOT_NBR") }}'
+        tests:
+          - not_null
+          - valid_min_number:
+              from: 0
+      - name: PYMT_RMAN_NBR
+        description: '{{ doc("tbl_LOAN_AR_PYMT_RMAN_NBR") }}'
+      - name: BLLN_PYMT_DUE_DT
+        description: '{{ doc("tbl_LOAN_AR_BLLN_PYMT_DUE_DT") }}'
+      - name: DCN_LOAN_F
+        description: '{{ doc("tbl_LOAN_AR_DCN_LOAN_F") }}'
+      - name: LOAN_TP_ID
+        description: '{{ doc("tbl_LOAN_AR_LOAN_TP_ID") }}'
+        tests:
+          - not_null
+      - name: LOAN_TO_VAL_RTO
+        description: '{{ doc("tbl_LOAN_AR_LOAN_TO_VAL_RTO") }}'
+      - name: CMB_LOAN_TO_VAL_RTO
+        description: '{{ doc("tbl_LOAN_AR_CMB_LOAN_TO_VAL_RTO") }}'
+      - name: FRST_PYMT_DT
+        description: '{{ doc("tbl_LOAN_AR_FRST_PYMT_DT") }}'
+      - name: INT_ONLY_TERM_END_DT
+        description: '{{ doc("tbl_LOAN_AR_INT_ONLY_TERM_END_DT") }}'
+      - name: LOAN_PRPYMT_PNY_END_DT
+        description: '{{ doc("tbl_LOAN_AR_LOAN_PRPYMT_PNY_END_DT") }}'
+      - name: LOAN_SUBS
+        description: '{{ doc("tbl_LOAN_AR_LOAN_SUBS") }}'
+      - name: LOAN_SUBS_END_DT
+        description: '{{ doc("tbl_LOAN_AR_LOAN_SUBS_END_DT") }}'
+      - name: NEG_AMRZ_AVL_ID
+        description: '{{ doc("tbl_LOAN_AR_NEG_AMRZ_AVL_ID") }}'
+      - name: NXT_INT_RSET_DT
+        description: '{{ doc("tbl_LOAN_AR_NXT_INT_RSET_DT") }}'
+      - name: INDP_CNSLL_RCVD_F
+        description: '{{ doc("tbl_LOAN_AR_INDP_CNSLL_RCVD_F") }}'
+      - name: ORIG_CMB_LOAN_TO_VAL_RTO
+        description: '{{ doc("tbl_LOAN_AR_ORIG_CMB_LOAN_TO_VAL_RTO") }}'
+      - name: ORIG_INS_CVR_PCT
+        description: '{{ doc("tbl_LOAN_AR_ORIG_INS_CVR_PCT") }}'
+      - name: ORIG_LOAN_TO_VAL_RTO
+        description: '{{ doc("tbl_LOAN_AR_ORIG_LOAN_TO_VAL_RTO") }}'
+      - name: PTY_PRCH_GOVT_SCM_ID
+        description: '{{ doc("tbl_LOAN_AR_PTY_PRCH_GOVT_SCM_ID") }}'
+      - name: PTY_PRCH_GOVT_SCM_NBR
+        description: '{{ doc("tbl_LOAN_AR_PTY_PRCH_GOVT_SCM_NBR") }}'
+      - name: AC_AR_ID
+        description: '{{ doc("tbl_LOAN_AR_AC_AR_ID") }}'
+
+
+sources:
+  - name: rawdata
+    schema: rawdata
+    config:
+      re_data_monitored: true
+    tables:
+      - name: completed_account
+      - name: completed_card
+      - name: completed_client
+      - name: completed_disposition
+      - name: completed_district
+      - name: completed_loan
+      - name: completed_order
+      - name: completed_transaction
+      - name: credit_worth
+      - name: crm_call_center_log
+      - name: crm_event
+      - name: crm_review
+      - name: dim_date_data
+      - name: identity_data
+      - name: interactiondepot_callcenter
+      - name: interactiondepot_email
+      - name: interactiondepot_mobile
+      - name: interactiondepot_web
+      - name: luxury_loan_portfolio
+      - name: tradelines
+

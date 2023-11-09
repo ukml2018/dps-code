@@ -1,0 +1,423 @@
+
+version: 2
+
+models:
+  - name: CustomerProfile
+    description: '{{ doc("tbl_customer_profile") }}'
+    columns:
+      - name: CUSTOMER_ID
+        description: '{{ doc("customer_id") }}'
+        tests:
+          - unique
+          - not_null
+          - validate_regex:
+              regex: '[C]{1}[0-9]{8}' 
+      - name: GENDER_DISPLAY
+        description: "{{ doc('enum_description') }} 'Female', 'Male'"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Female', 'Male']
+      - name: BIRTH_DATE
+        description: "{{ doc('birth_date') }}"
+        tests:
+          - not_null
+          - valid_date
+          - valid_date_range:
+              from: '1/1/1900'  
+      - name: BIRTH_DAY
+        description: "{{ doc('birth_day') }}"
+        tests:
+          - not_null
+          - valid_number_range:
+              from: 1
+              to: 31  
+      - name: BIRTH_MONTH
+        description: "{{ doc('birth_month') }}"
+        tests:
+          - not_null
+          - valid_number_range:
+              from: 1
+              to: 12   
+      - name: BIRTH_YEAR
+        description: "{{ doc('birth_year') }}"
+        tests:
+          - not_null
+          - valid_number_range:
+              from: 1900
+              to: 'YEAR(CURRENT_TIMESTAMP)'     
+      - name: AGE
+        description: "{{ doc('age') }}"
+        tests:
+          - not_null
+          # - valid_age:
+          #     birth_date_column: 'BIRTH_DATE' 
+              # date_format: 'YYYY-MM-DD'
+          - valid_number_range:
+              from: 0
+              to: 140     
+      - name: SOCIAL_NUMBER
+        description: '{{ doc("social_number") }}'
+        tests:
+          - unique
+          - not_null
+          - validate_regex:
+              regex: '[0-9]{3}-[0-9]{2}-[0-9]{4}' 
+      - name: FIRST_NAME
+        description: '{{ doc("customer_name") }}'
+        tests:
+          - not_null
+          - validate_regex:
+              regex: '[A-Z]{1}[a-z]+' 
+      - name: MIDDLE_NAME
+        description: '{{ doc("customer_name") }}'
+        tests:
+          - validate_regex:
+              regex: '[A-Z]{1}[a-z]+' 
+      - name: LAST_NAME
+        description: '{{ doc("customer_name") }}'
+        tests:
+          - not_null
+          - validate_regex:
+              regex: '[A-Z]{1}[a-z]+'  
+      - name: PRIMARY_PHONE
+        description: '{{ doc("primary_phone") }}'
+        tests:
+          - validate_regex:
+              regex: '[0-9]{3}-[0-9]{3}-[0-9]{4}'   
+      - name: PRIMARY_EMAIL
+        description: '{{ doc("primary_email") }}'
+        tests:
+          - validate_regex:
+              regex: '[a-z0-9]+\.[a-z0-9]+\.+[a-z0-9]+@[a-z0-9]+\.[a-z]+'      
+      - name: MAILING_ADDRESS
+        description: '{{ doc("mailing_address") }}'
+        tests:
+          - not_null     
+      - name: UNIT_ADDRESS
+        description: '{{ doc("unit_address") }}'
+        tests:
+          - validate_regex:
+              regex: '[Unit|Apt.]+ [0-9]+[A-Z]?'     
+      - name: CITY
+        description: '{{ doc("city") }}'
+        tests:
+          - not_null
+      - name: STATE
+        description: '{{ doc("state") }}'
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['AK','AL','AZ','AR','CA','CO','CT','DC','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY']          
+      - name: POSTAL_CODE
+        description: '{{ doc("postal_code") }}'
+        tests:
+          - not_null    
+      - name: DISTRICT_ID
+        description: '{{ doc("district_id") }}'
+        tests:
+          - not_null
+          - valid_number_range:
+              from: 1
+              to: 77      
+      - name: CREDIT_SCORE
+        description: '{{ doc("credit_score") }}'
+        tests:
+          - not_null 
+          - valid_number_range:
+              from: 600
+              to: 800    
+      - name: ACORN_CATEGORY
+        description: '{{ doc("acorn_category") }}'
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['executive wealth', 'starting out', 'successful suburbs', 'poorer pensioners', 'career climbers', 'struggling estates', 'comfortable seniors', 'student life', 'modest means', 'countryside communities', 'striving families', 'city sophisticates', 'not private household', 'steady neighbourhoods', 'mature money', 'lavish lifestyle', 'difficult circumstances', 'young hardship']                            
+      - name: CRIMINAL_RECORD
+        description: '{{ doc("criminal_record") }}'
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Y', 'N']              
+  - name: IdentityData
+    description: "A IdentityData dbt model"
+    columns:
+      - name: CUSTOMER_ID
+        description: '{{ doc("customer_id") }}'
+        tests:
+          - unique
+          - not_null
+          - validate_regex:
+              regex: '[C]{1}[0-9]{8}' 
+      - name: MA_ID
+        description: "The MAID for this table."
+        tests:
+          - not_null
+      - name: DEVICE_TYPE
+        description: "The device type for the customer."
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['android', 'ios']
+      - name: HASHED_EMAIL
+        description: "The hashed email for the email address."
+        tests:
+          - not_null
+      - name: COLLECTION_TIMESTAMP
+        description: "The collection timestamp for the data."
+        tests:
+          - not_null
+      - name: IP_ADDRESS
+        description: "The IP address for the customer."
+        tests:
+          - not_null
+          - validate_regex:
+              regex: '[0-9]{2}\.[0-9]{3}\.[0-9]{2}\.[0-9]{3}' 
+      - name: SOURCE_ID
+        description: "The sourceID."
+        tests:
+          - not_null
+  - name: CreditWorth
+    description: "A CreditWorth dbt model"
+    columns:
+      - name: CUSTOMER_ID
+        description: '{{ doc("customer_id") }}'
+        tests:
+          - unique
+          - not_null
+          - validate_regex:
+              regex: '[C]{1}[0-9]{8}'
+      - name: OUTCOME
+        description: "The credit for the customer."
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Good', 'Bad'] 
+      - name: CONFIDENCE
+        description: "The credit confidence for the customer."
+        tests:
+          - not_null
+      - name: REVIEW_STATUS
+        description: "The review status."
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Review Required', 'Review Not Required']
+  - name: CompletedDisposition
+    description: "A CompletedDisposition dbt model"
+    columns:
+      - name: CUSTOMER_ID
+        description: '{{ doc("customer_id") }}'
+        tests:
+          - unique
+          - not_null
+          - validate_regex:
+              regex: '[C]{1}[0-9]{8}' 
+      - name: DISP_ID
+        description: "The DispositionId."
+        tests:
+          - unique
+          - not_null
+          - validate_regex:
+              regex: '[D]{1}[0-9]{8}' 
+      - name: ACCOUNT_ID
+        description: "The accountId."
+        tests:
+          - not_null
+          - validate_regex:
+              regex: '[A]{1}[0-9]{8}' 
+      - name: TYPE
+        description: "The account type for the customer."
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Owner', 'User']
+  - name: InteractionDepot
+    description: "A InteractionDepot dbt model"
+    columns:
+      - name: INTERACTION_DEPOT_ID
+        description: "The primary key of this table."
+        tests:
+          - unique
+          - not_null
+      - name: TIMESTAMP
+        description: "The timestamp for this table"
+        tests:
+          - not_null
+      - name: ACCOUNT_ID
+        description: "The account Id for this table"
+        tests:
+          - not_null
+          - validate_regex:
+              regex: '[A]{1}[0-9]{8}' 
+      - name: CLIENT_ID
+        description: '{{ doc("customer_id") }}'
+        tests:
+          - not_null
+          - validate_regex:
+              regex: '[C]{1}[0-9]{8}'
+      - name: CHANNEL
+        description: "The interaction channel for this table"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Web', 'Email', 'Mobile', 'Call']
+      - name: EVENTTYPE
+        description: "The Event Type for this table"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Click', 'Considering', 'Conversion', 'Lead', 'Offered', 'Open', 'Presented', 'Sent']
+      - name: LOCATIONID
+        description: "The location Id for this table"
+      - name: TREATMENTID
+        description: "The treatment Id for this table"
+        tests:
+          - not_null
+      - name: JOURNEY
+        description: "The journey for this table"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['AutoLoan', 'Credit', 'Deposit', 'HomeLoan', 'Investing']
+      - name: STAGE
+        description: "The stage for this table"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Awareness', 'Interest', 'Discovery', 'Conversion']
+  - name: AnalyticData
+    description: ""
+    columns:
+      - name: CUSTOMER_ID
+        description: '{{ doc("customer_id") }}'
+        tests:
+          - unique
+          - not_null
+          - validate_regex:
+              regex: '[C]{1}[0-9]{8}' 
+      - name: ACCOUNT_ID
+        description: "The accountId."
+        tests:
+          - not_null
+          - validate_regex:
+              regex: '[A]{1}[0-9]{8}' 
+      - name: RDFAO
+        description: '{{ doc("AnalyticData_RDFAO") }}'
+        tests:
+          - not_null
+      - name: RDFAOCC
+        description: '{{ doc("AnalyticData_RDFAOCC") }}'      
+      - name: RDFAOHL
+        description: '{{ doc("AnalyticData_RDFAOHL") }}'
+      - name: ARDFAD
+        description: '{{ doc("AnalyticData_ARDFAD") }}'
+        # tests:
+        #   - not_null
+      - name: ARDFADCC
+        description: '{{ doc("AnalyticData_ARDFADCC") }}'
+      - name: ARDLD
+        description: '{{ doc("AnalyticData_ARDLD") }}'
+      - name: ARDLDCC
+        description: '{{ doc("AnalyticData_ARDLDCC") }}'
+      - name: ARDLDHL
+        description: '{{ doc("AnalyticData_ARDLDHL") }}'
+      - name: ARDLC
+        description: '{{ doc("AnalyticData_ARDLC") }}'
+      - name: ARDLCCC
+        description: '{{ doc("AnalyticData_ARDLCCC") }}'
+      - name: ARDLCHL
+        description: '{{ doc("AnalyticData_ARDLCHL") }}'
+      - name: ANTW
+        description: '{{ doc("AnalyticData_ANTW") }}'
+      - name: ANTWCC
+        description: '{{ doc("AnalyticData_ANTWCC") }}'
+      - name: ANTWHL
+        description: '{{ doc("AnalyticData_ANTWHL") }}'
+      - name: VNTW
+        description: '{{ doc("AnalyticData_VNTW") }}'
+      - name: VNTWCC
+        description: '{{ doc("AnalyticData_VNTWCC") }}'
+      - name: VNTWHL
+        description: '{{ doc("AnalyticData_VNTWHL") }}'
+      - name: ADTW
+        description: '{{ doc("AnalyticData_ADTW") }}'
+      - name: ADTWCC
+        description: '{{ doc("AnalyticData_ADTWCC") }}'
+      - name: ADTWHL
+        description: '{{ doc("AnalyticData_ADTWHL") }}'
+      - name: ACTW
+        description: '{{ doc("AnalyticData_ADTW") }}'
+      - name: ACTWCC
+        description: '{{ doc("AnalyticData_ADTWCC") }}'
+      - name: ACTWHL
+        description: '{{ doc("AnalyticData_ADTWHL") }}'
+      - name: VDTW
+        description: '{{ doc("AnalyticData_VDTW") }}'
+      - name: VDTWCC
+        description: '{{ doc("AnalyticData_VDTWCC") }}'
+      - name: VDTWHL
+        description: '{{ doc("AnalyticData_VDTWHL") }}'
+      - name: VCTW
+        description: '{{ doc("AnalyticData_VCTW") }}'
+      - name: VCTWCC
+        description: '{{ doc("AnalyticData_VCTWCC") }}'
+      - name: VCTWHL
+        description: '{{ doc("AnalyticData_VCTWHL") }}'
+      - name: AADTW
+        description: '{{ doc("AnalyticData_AADTW") }}'
+      - name: AADTWCC
+        description: '{{ doc("AnalyticData_AADTWCC") }}'
+      - name: AADTWHL
+        description: '{{ doc("AnalyticData_AADTWHL") }}'
+      - name: AACTW
+        description: '{{ doc("AnalyticData_AACTW") }}'
+      - name: AACTWCC
+        description: '{{ doc("AnalyticData_AACTWCC") }}'
+      - name: AACTWHL
+        description: '{{ doc("AnalyticData_AACTWHL") }}'
+      - name: VADTW
+        description: '{{ doc("AnalyticData_VADTW") }}'
+      - name: VADTWCC
+        description: '{{ doc("AnalyticData_VADTWCC") }}'
+      - name: VADTWHL
+        description: '{{ doc("AnalyticData_VADTWHL") }}'
+      - name: VACTW
+        description: '{{ doc("AnalyticData_VACTW") }}'
+      - name: VACTWCC
+        description: '{{ doc("AnalyticData_VACTWCC") }}'
+      - name: VACTWHL
+        description: '{{ doc("AnalyticData_VACTWHL") }}'
+      - name: RATE
+        description: '{{ doc("AnalyticData_RATE") }}'
+      - name: CTIER
+        description: '{{ doc("AnalyticData_CTIER") }}'
+      - name: CHU
+        description: '{{ doc("AnalyticData_CHU") }}'
+      - name: CCUCS
+        description: '{{ doc("AnalyticData_CCUCS") }}'
+      - name: CCUASP
+        description: '{{ doc("AnalyticData_CCUASP") }}'
+      - name: CCUVSP
+        description: '{{ doc("AnalyticData_CCUVSP") }}'         
+
+sources:
+  - name: conformed
+    schema: conformed
+    config:
+      re_data_monitored: true
+    tables:
+      - name: sa_ip
+      - name: sa_ip_prof
+      - name: sa_ip_eltrn_addr
+      - name: sa_ip_pstl_addresses
+      - name: sa_ar_to_sa_ip_rl
+      - name: sa_chnl
+      - name: sa_cpgn_seg_actvty
+      - name: sa_prd
+      - name: sa_ev_cmm
+      - name: lo
+      - name: ac_ar
+      - name: cc_ar
+      - name: loan_ar
+      - name: txn
